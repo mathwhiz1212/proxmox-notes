@@ -1,7 +1,7 @@
 # Samba Install
 
 I have 2 hard drives in a ZFS mirror for data redundancy.
-[Create a ZFS Mirror](ZFS.md## Create a ZFS Mirror)
+[Create a ZFS Mirror](ZFS.md#create-a-zfs-mirror)
 
 Have a separate virtual drive for the OS and for Samba. This will make backups and some administration a lot easier.
 
