@@ -5,12 +5,6 @@ Here are some topics:
 
 [ZFS](ZFS.md)
 
-  ZFS Replication
-  ZFS tweaks
-zfs set atime=off rpool
-On physical nodes:
-See SSD reduce writes script. Add: do not use in production.
-
 [Clustering](Clustering.md)
 
 Corosync voting device.
@@ -98,6 +92,3 @@ Brew install zstd
 Use tar to create a zst archive
 tar --zstd -cf Proxmox.zst Proxmox
 tar --zstd -xf Proxmox.zst -C Proxmox2 # -C being a directory to put the files or folders.
-
-
-

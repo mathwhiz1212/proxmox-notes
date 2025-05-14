@@ -24,3 +24,11 @@ Turn on the newest compression (as of early 2025):
 Turn off atime (slight reduction in disk wear):
 
 `zfs set atime=off hardpool`
+
+### On physical nodes:
+
+If testing on consumer SSDs, see this SSD wear-reduction script: https://git.coolaj86.com/josh/proxmox-scripts/raw/branch/main/Proxmox/reduce-ssd-writes.sh
+
+**Do not use in production, or on hard drives.**
+
+# ZFS Replication
