@@ -1,43 +1,46 @@
 # proxmox-notes
-Notes from my Proxmox cluster and related topics.
 
-Here are some topics:
+Notes from my Proxmox cluster and related technologies.
 
 [Proxmox Setup](Proxmox%20Setup.md)
 
-[ZFS](ZFS.md)
+[Hardware](Hardware.md)
 
 [Clustering](Clustering.md)
 
-[Ceph](Ceph.md)
-
 Corosync voting device.
 Link to AJ Raspi docs.
+
+[Cluster Management](Cluster%20Management.md)
+
+Removing a Node from the cluster.
+
+[Preventing Failures](Preventing%20Failures.md)
+
+[Recovering From Failures](Recovering%20From%20Failures.md)
+
+[ZFS](ZFS.md)
+
+[Ceph](Ceph.md)
+
 Linux Permissions
 Debian Setup
 Install
 VM Setup
 
 Minimal Debian install.
-Removing a Node from the cluster.
 Actual removal.
-Hardware
-What I'm using.
-Don't use this.
-What you should use.
-Business class switch? Ask AJ.
-Proxmox Problems I've encountered and how to fix them.
+
 Troubleshooting
 Ubuntu Server Live
 Using Caddy as a reverse proxy.
 Security warning.
 pfSense.
-MacOS
-Assign PVID because it doesn't like VLANs.
-Here's my network interface config.
-Debian network interfaces for Proxmox (/etc/network/interfaces)
+
 Useful links
-Virtual Proxmox cluster
+
+Virtual node
+
 Host cpu. Can't migrate like that.
 Get a VM ready to cluster non-leader.
 Clone, don't backup and restore. Can probably do template.
@@ -71,24 +74,21 @@ Shrink partition
 Shrink ZFS volume.
 Shrink qemu disk (with some margin for GB Vs GiB).
 Oveprovisioning
-CPUs
-Always do 2 CPUs even if you apply a cpu limit of 1, I believe it's for garbage collection so it can use 2 threads as needed at a slower speed.
-Virtual cluster
-DO NOT specify a VLAN in the nested Proxmox install.
+
 Problems
 Loose or bad Ethernet cables.
 Slow spec Ethernet cables.
-VLANs
-if an access port (PVID)  is configured in this model of netgear switch, you cannot specify the VLAN ID or it will not pass the traffic.
-AJ: Or it may pass the VLAN ID through as a nested VLAN ID, which would also cause problems.
 
 
 2FA
+
 WebAUTHn
 OTP
 Recovery keys
+
 MacOS tweaks
 Give it a PVID because it doesn't like VLANs.
+
 Brew install zstd
 Use tar to create a zst archive
 tar --zstd -cf Proxmox.zst Proxmox

@@ -22,6 +22,20 @@ chmod +x proxmox-setup.sh
 
 ## Networking
 
+It is much easier to configure networking before clustering.
+
+### VLANs
+
+You'll need a managed switch to configure VLANs. AJ recommends this switch: https://www.amazon.com/NETGEAR-Gigabit-Lifetime-Protection-GS105Ev2/dp/B00HGLVZLY
+
+I'm using a cheaper variant, but I wouldn't recommend it unless you are trying to economize cost as much as possible.
+
+If an access port (PVID) is configured in this model of Netgear switch, you cannot specify the VLAN ID on the device itself or it will not pass the traffic.
+
+AJ: Or it may pass the VLAN ID through as a nested VLAN ID, which would also cause problems.
+
+It is best to give MacOS devices a PVID because they tend not to play nice with VLANs otherwise.
+
 ### Interfaces (/etc/network/interfaces)
 
 ```
@@ -51,3 +65,11 @@ iface mgmt inet static
 
 source /etc/network/interfaces.d/*
 ```
+
+### pfSense
+
+# Install
+
+
+
+# Configuration

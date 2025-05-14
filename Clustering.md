@@ -1,5 +1,23 @@
 # Clustering
 
+# Hardware
+
+At least 3 nodes for ZFS replication, or at least 4 nodes for Ceph replication.
+
+You can use 2 nodes + a voting device (like a raspberry pi) in a home lab, but you'll have less redundancy.
+
+If you don't have the physical hardware (say, number of devices) to do a physical Proxmox cluster (see notes below if you want to do that)
+
+## Prep the leader
+
+## Prep the followers
+
+## Virtual Proxmox Cluster
+
+DO NOT specify a VLAN in the nested Proxmox install, the Proxmox node VM needs the VLAN specified, but the VMs underneath it shouldn't have VLANs specified.
+
+You can create virtual network interfaces to isolate VMs on different networks.
+
 Raspi pre-cluster
 Qdpi1
 172.18.0.239

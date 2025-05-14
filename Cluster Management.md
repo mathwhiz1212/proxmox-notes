@@ -1,13 +1,22 @@
+# Cluster Management
 
-Remove a node from cluster
+Docs: https://pve.proxmox.com/wiki/Cluster_Manager
+
+# Remove a node from cluster
+
 https://pve.proxmox.com/wiki/Cluster_Manager#_remove_a_cluster_node
-Ceph
+
+## Remove the node from the Ceph cluster (if you use Ceph)
+
 OSD > out
 Then stop
 More > Destroy
 Then destroy manager for the node.
 ceph osd crush remove vmpve5
 Destroy any metadata or manager services attached to the node.
+
+## Remove the node from the Proxmox Cluster
+
 Pvecm nodes to get a list of nodes
 Shutdown the node completely before going any further or you may have a broken cluster.
 pvecm delnode hp4
