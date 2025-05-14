@@ -3,15 +3,23 @@ Notes from my Proxmox cluster and related topics.
 
 Here are some topics:
 
+[ZFS](ZFS.md)
+
+  ZFS Replication
+  ZFS tweaks
+zfs set atime=off rpool
+On physical nodes:
+See SSD reduce writes script. Add: do not use in production.
+
 [Clustering](Clustering.md)
+
 Corosync voting device.
 Link to AJ Raspi docs.
 Linux Permissions
 Debian Setup
 Install
 VM Setup
-ZFS
-ZFS Replication
+
 Ceph
 Ceph Cluster
 Minimal Debian install.
@@ -39,10 +47,7 @@ Host cpu. Can't migrate like that.
 Get a VM ready to cluster non-leader.
 Clone, don't backup and restore. Can probably do template.
 OS doesn't need much if you're using secondary drives for storage.
-ZFS tweaks
-zfs set atime=off rpool
-On physical nodes:
-See SSD reduce writes script. Add: do not use in production.
+
 Minimal Debian install.
 ACME w/Caddy reverse proxy.
 Proxmox built-in requires port 80 port forwarding. Maybe Caddy too?
