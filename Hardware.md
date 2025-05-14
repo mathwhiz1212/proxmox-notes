@@ -22,3 +22,5 @@ I don't recommend this, I went as cheap as possible and re-used hardware I had:
 - Custom (AMD FX Series CPU, 8GB DDR3 (2x4GB))
 
 The HPs are the nodes, The AMD FX PC is the Proxmox Backup Server and will be the voting device once I remove the Raspberry Pi, and add the PBS server as a Corosync QDevice.
+
+HP has a PartSurfer tool that lets you look up your serial number and find all the parts that went into your HP computer: https://partsurfer.hp.com/

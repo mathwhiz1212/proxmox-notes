@@ -10,12 +10,12 @@ Here is mine:
 
 [Clustering](Clustering.md)
 
-Corosync voting device.
-Link to AJ Raspi docs.
+- Corosync voting device.
+- Link to AJ Raspi docs.
 
 [Cluster Management](Cluster%20Management.md)
 
-Removing a Node from the cluster.
+- Removing a Node from the cluster.
 
 [Preventing Failures](Preventing%20Failures.md)
 
@@ -49,25 +49,18 @@ Clone, don't backup and restore. Can probably do template.
 OS doesn't need much if you're using secondary drives for storage.
 
 Minimal Debian install.
-ACME w/Caddy reverse proxy.
-Proxmox built-in requires port 80 port forwarding. Maybe Caddy too?
-Always manually specify caddyfile when restarting or you will be confused.
-Linux tools
+
 Ssh-copy-id to proxmox nested host and guests.
-Lshw
-hwinfo
-iotop
-htop
-screen
-smartmontools (Proxmox comes with).
-stress
+
 Useful links
-HP partsurfer hp only.
+
 Network set up.
 IP addresses and hostnames for everything.
+
 VLANs
 Subnets
 Domain names.
+
 Qemu
 Random commands.
 Shrink a disk
@@ -81,15 +74,13 @@ Problems
 Loose or bad Ethernet cables.
 Slow spec Ethernet cables.
 
-
 2FA
 
 WebAUTHn
 OTP
 Recovery keys
 
-MacOS tweaks
-Give it a PVID because it doesn't like VLANs.
+MacOS
 
 Brew install zstd
 Use tar to create a zst archive

@@ -1,5 +1,7 @@
 # Proxmox Setup
 
+Proxmox uses `qemu` for virtual machines, and `lxc` for containers under-the-hood, with some features added on top.
+
 ## Install
 
 Can use a RAIDz0 ZFS filesystem on a single OS drive if you don't have more than one for that purpose.
