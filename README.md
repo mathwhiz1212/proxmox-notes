@@ -3,7 +3,7 @@ Notes from my Proxmox cluster and related topics.
 
 Here are some topics:
 
-[Proxmox Setup](Proxmox Setup.md)
+[Proxmox Setup](Proxmox%20Setup.md)
 
 [ZFS](ZFS.md)
 
