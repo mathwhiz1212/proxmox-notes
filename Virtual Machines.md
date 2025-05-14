@@ -2,12 +2,23 @@
 
 ## CPU Cores and CPU Limits
 
+So just look up the minimum/recommended system requirements for the software I want to run and go slightly over that?
+
+AJ: Sure
+
 CPUs
 Always do 2 CPUs even if you apply a CPU limit of 1, I believe it's for garbage collection so it can use 2 threads as needed at a slower speed.
 
 You can generally overprovision CPUs somewhat 4x or less if your workload isn't CPU intensive. If it is CPU intensive, you may not be able to overprovision at all without sacrificing performance.
 
 AJ:
+
+I would say always allocate 2 cores, but it doesn't really matter what the CPU limit is - that's up to you.
+It's a wide (cores) vs tall (ghz) issue.
+
+No number of cores can solve the problem of raw speed,
+but raw speed can't solve the problem of needing additional cores.
+So if you have 2 cores and limit the allowed use 0.5, then you'll only be able to use so many ghz, but you won't be bottlenecked by only having 1 core.
 
 Cores there is virtualized cores.
 CPU limit is the equivalent real cores.
