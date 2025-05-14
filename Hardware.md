@@ -13,7 +13,7 @@ I don't recommend this, I went as cheap as possible and re-used hardware I had:
 
 - Kingston SSDNow V300 120GB OS drives for all 3 machines.
 
-- Circa 2012-2014 Western Digital 1TB hard drives - 2 in each machine in a ZFS mirror to guard against drive failure, more likely on these old drives.
+- Circa 2012-2014 Western Digital 1TB hard drives - 2 in each machine in a ZFS mirror to guard against drive failure, more likely on these old drives. I would do the same on new drives because drive failures are the most common problem.
 
 ## Old Computers:
 
@@ -21,4 +21,4 @@ I don't recommend this, I went as cheap as possible and re-used hardware I had:
 - HP (i7-4770, 16GB DDR3 (2x8GB, already at max capacity))
 - Custom (AMD FX Series CPU, 8GB DDR3 (2x4GB))
 
-The HPs are the nodes, the AMD FX PC is the Proxmox Backup Server and will be the voting device once I remove the Raspberry Pi, and add the PBS server as a Corosync QDevice.
+The HPs are the nodes, The AMD FX PC is the Proxmox Backup Server and will be the voting device once I remove the Raspberry Pi, and add the PBS server as a Corosync QDevice.
