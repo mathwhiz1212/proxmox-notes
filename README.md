@@ -7,6 +7,8 @@ Here are some topics:
 
 [Clustering](Clustering.md)
 
+[Ceph](Ceph.md)
+
 Corosync voting device.
 Link to AJ Raspi docs.
 Linux Permissions
@@ -14,11 +16,8 @@ Debian Setup
 Install
 VM Setup
 
-Ceph
-Ceph Cluster
 Minimal Debian install.
 Removing a Node from the cluster.
-Ceph removal.
 Actual removal.
 Hardware
 What I'm using.
