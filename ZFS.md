@@ -27,7 +27,9 @@ Turn off atime (slight reduction in disk wear):
 
 ### On physical nodes:
 
-If testing on consumer SSDs, see this SSD wear-reduction script: https://git.coolaj86.com/josh/proxmox-scripts/raw/branch/main/Proxmox/reduce-ssd-writes.sh
+If testing on consumer SSDs, see this SSD wear-reduction script. I'd recommend running the commands one-by-one ONLY when you understand what they do and can choose what to do and not do. The defaults are preferable if you don't understand what you're doing:
+
+https://git.coolaj86.com/josh/proxmox-scripts/raw/branch/main/Proxmox/reduce-ssd-writes.sh
 
 **Do not use in production, or on hard drives.**
 
