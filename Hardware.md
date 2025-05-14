@@ -2,6 +2,8 @@
 
 AJ's recommendations: https://github.com/bnnanet/learn-colocation/issues/13
 
+You can look up SSDs to see their TBW and DWPD (drive writes per day) by the search bar: https://www.techpowerup.com/
+
 ## My Hardware
 
 I don't recommend this, I went as cheap as possible and re-used hardware I had:
