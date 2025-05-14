@@ -1,4 +1,9 @@
-proxmox passthrough drives to VM
+# Samba Install
+
+I have 2 hard drives in a ZFS mirror for data redundancy.
+[Create a ZFS Mirror](ZFS.md## Create a ZFS Mirror)
+
+Have a separate virtual drive for the OS and for Samba. This will make backups and some administration a lot easier.
 
 Debian netinstall with just the ssh server.
 
@@ -52,3 +57,5 @@ https://serverfault.com/questions/657942/encrypting-smb-traffic-with-samba
 General securing Samba
 https://www.makeuseof.com/ways-to-secure-samba-server-on-linux/
 https://www.cyberciti.biz/faq/how-to-configure-samba-to-use-smbv2-and-disable-smbv1-on-linux-or-unix/
+
+I wonder if passing the drive directly to the VM would increase performance, if you have an entire ZFS pool to dedicate to it.
