@@ -9,7 +9,7 @@ I don't recommend this, I went as cheap as possible and re-used hardware I had:
 - Wifi-Ethernet bridge (didn't have ethernet, but had wifi for the lab): https://www.amazon.com/dp/B07N1WW638
 - Managed Switch: https://www.amazon.com/dp/B07PJ7XZ7X
 
-- Ethernet cables capable of 1000mbps, Cat5e or newer. I used mostly Cat5e I already had access to.
+- Ethernet cables capable of 1000mbps, Cat5e or newer. I used mostly Cat5e cables I already had access to.
 
 - Kingston SSDNow V300 120GB OS drives for all 3 machines.
 

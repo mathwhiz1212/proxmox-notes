@@ -1,6 +1,8 @@
 # proxmox-notes
 
-Notes from my Proxmox cluster and related technologies.
+AJ has excellent Proxmox documentation here: https://github.com/bnnanet/learn-colocation/issues/
+
+Here is mine:
 
 [Proxmox Setup](Proxmox%20Setup.md)
 
