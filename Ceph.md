@@ -13,3 +13,10 @@ Metadata is only needed for CephFS which is not used for VMs, but can be used fo
 
 
 ## Removing a Node from a Ceph Cluster
+
+## Random Ceph Commands
+
+   69  ceph status
+   70  pveceph status
+   71  ceph df
+   72  ceph mon star
