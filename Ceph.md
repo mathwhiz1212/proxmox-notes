@@ -43,4 +43,6 @@ https://docs.ceph.com/en/reef/rados/operations/monitoring/ (run these as `pvecep
 
 https://www.oreilly.com/library/view/mastering-proxmox/9781788397605/6297ed4c-0a37-4b41-9cef-e48aea6a27fc.xhtml
 
+## Destroying OSDs
 
+First, click "Out", then wait for the cluster to rebalance and say it's healthy again on the Ceph status page. Then stop it. Again, wait till healthy. Then More > Destroy.
