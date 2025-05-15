@@ -46,3 +46,5 @@ https://www.oreilly.com/library/view/mastering-proxmox/9781788397605/6297ed4c-0a
 ## Destroying OSDs
 
 First, click "Out", then wait for the cluster to rebalance and say it's healthy again on the Ceph status page. Then stop it. Again, wait till healthy. Then More > Destroy.
+
+If it tells you any step is not safe, try doing it on another OSD and coming back to the one you are out-ing, stop-ing, or destroy-ing.
