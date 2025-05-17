@@ -17,8 +17,11 @@ If you don't have a Quorom, the cluster will fail (no VMs or containers running)
 If you have 2 nodes and a voting device, you can lose a node OR the voting device, but not both.
 
 3 nodes, you can lose 1.
+
 4 nodes, you can lose 1.
+
 4 nodes + a voting device, you can lose 2 nodes or 1 node and the voting device.
+
 5 nodes, you can lose 2 nodes.
 
 ## Prep the leader
