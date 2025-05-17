@@ -4,7 +4,9 @@ Things I'd recommend for production that I don't have in my home lab:
 
 1. SSDs for all storage, preferably NVMes for the metadata/cache/slog device. Preferably Enterprise-class drives with a strong write tolerance and power failure data loss protection of some kind. Minimum is SSDs for special devices if you're using hard drives.
 
-2. 10Gbit/s networking or as close as you can get (if you're running Ceph) on a proper business class switch. Less speed can work depending on the use case.
+2. low-latency networking for Corosync and 10Gbit/s networking or as close as you can get if you want to run Ceph. Slower speeds can work depending on the use case.
+
+A proper business class switch is worth the investment.
 
 3. Auto-restart x seconds/minutes after power comes back in the event of a power failure.
 
