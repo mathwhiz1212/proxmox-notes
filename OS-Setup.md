@@ -1,24 +1,31 @@
 # OS Setup
 
-Ubuntu Server
+## Ubuntu Server
 
 Minimal install.
 Configure IP
 Import SSH keys from github.
+
+It won't look like a login prompt the first time, just type your username under the SSH key info.
+
 Turn off swap
 sudo swapoff -a
-Edit /etc/fstab to comment out swap out. Add a noatime line while you’re there.
+
+Edit `sudo nano /etc/fstab` to comment out swap out. Add a noatime label to the main disk while you’re there.
+
 For example:
 LABEL=FED34 / btrfs defaults,noatime
 sudo nano /etc/fstab
-Remove snap.
-sudo apt remove snap-store snap snapd -y
-Install utilities
-sudo apt install nano screen curl -y
-Update
-`apt update && apt upgrade -y`
 
-Debian netinstall
+Install utilities
+`sudo apt install nano screen curl htop -y`
+Update
+`sudo apt update && apt upgrade -y`
+
+Can remove snap.
+`sudo apt remove snap-store snap snapd -y`
+
+## Debian netinstall
 
 Domain:
 pve
