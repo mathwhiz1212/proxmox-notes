@@ -17,6 +17,8 @@ Metadata is only needed for CephFS which is not used for VMs, but can be used fo
 
 ## Removing a Node from a Ceph Cluster
 
+PG numbers needs to go down to 0 after “out” ing before you can safely stop. Or at least low. It doesn't always need to be 0.
+
 ## Random Ceph Commands
 
    69  ceph status (or ceph -s)
