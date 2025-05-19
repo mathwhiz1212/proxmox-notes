@@ -22,6 +22,8 @@ Install utilities
 Update
 `sudo apt update && apt upgrade -y`
 
+unattended-updates is alledgedly on by default, but I'd have to check to be sure.
+
 Can remove snap.
 `sudo apt remove snap-store snap snapd -y`
 
