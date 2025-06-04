@@ -8,15 +8,15 @@ export HISTCONTROL="ignoreboth" to hide commands that start with a space
 
 remove spaces fom app password when entering in this command
 
-set root emai as the email to send alerts to
-
 /etc/zfs/zed.d/zed.rc
+
+set ZED_EMAIL_ADDR=
+to the email to send alerts to
 
 uncomment ZED_EMAIL_PROG and leave it as mail and lastly uncomment ZED_EMAIL_OPTS.
 
-After performing those two tweaks I am now able to receive an email notification every time zfs scrubs. If you only wish to be notified on errors set ZED_NOTIFY_VERBOSE to 0.
+I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
+
+You can view the zfs-zed log with `journalctl -u zfs-zed`
 
 Hit G to go to the end of a journalctl file.
-
-/tmp/zed.debug.log
-
