@@ -16,12 +16,12 @@ remove spaces fom app password when entering in the command that requires it.
 
 comment out `relayhost=` in the postfix config file. Add the gmail settings to the bottom.
 
-/etc/zfs/zed.d/zed.rc
+# ZFS Alerts
 
-set ZED_EMAIL_ADDR=
+In `/etc/zfs/zed.d/zed.rc`
+
+Set ZED_EMAIL_ADDR=
 to the email to send alerts to
-
-uncomment ZED_EMAIL_PROG and leave it as mail and lastly uncomment ZED_EMAIL_OPTS.
 
 I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
 
@@ -30,6 +30,11 @@ I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
 You can view the zfs-zed log with `journalctl -u zfs-zed`
 
 Hit G to go to the end of a journalctl file.
+
+In `/etc/zfs/zed.d/zed.rc`
+you may need to specify a program and command line options if your situation is unique:
+
+Uncomment ZED_EMAIL_PROG (mail program, `mail` probably works) and uncomment ZED_EMAIL_OPTS (CLI options)
 
 # On more than one node.
 
