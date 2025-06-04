@@ -6,15 +6,13 @@ Datacenter > Users > root > edit.
 
 export HISTCONTROL="ignoreboth"
 
-to hide any commands with spaces at the beginning, and run the password commands with spaces at the beginning.
+to hide any commands with a space at the beginning, and run the password commands with spaces at the beginning.
 
 You can add this to your `.bashrc` file if you want that to persist across shell instances.
 
 https://technotim.live/posts/proxmox-alerts/
 
 turn on 2FA to allow creation of app password.
-
-export HISTCONTROL="ignoreboth" to hide commands that start with a space
 
 remove spaces fom app password when entering in the command that requires it.
 
