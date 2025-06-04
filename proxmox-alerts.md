@@ -27,6 +27,8 @@ I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
 
 # Troubleshooting
 
+Restart the `zfs-zed` service using `systemctl restart zfs-zed`
+
 You can view the zfs-zed log with `journalctl -u zfs-zed`
 
 Hit G to go to the end of a journalctl file.
