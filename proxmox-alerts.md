@@ -4,7 +4,7 @@ Set the root email in proxmox to the email you want the alerts to go to.
 
 Datacenter > Users > root > edit.
 
-export HISTCONTROL="ignoreboth"
+Run: `export HISTCONTROL="ignoreboth"`
 
 to hide any commands with a space at the beginning, and run the password commands with spaces at the beginning.
 
