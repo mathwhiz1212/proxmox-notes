@@ -6,7 +6,23 @@ At least 3 nodes for ZFS replication, or at least 4 nodes for Ceph replication.
 
 You can use 2 nodes + a voting device (like a raspberry pi) in a home lab, but you'll have less redundancy.
 
-If you don't have the physical hardware (say, number of devices) to do a physical Proxmox cluster (see notes below if you want to do that)
+If you don't have the physical hardware (say, number of devices) to do a physical Proxmox cluster, you can do a virtual cluster for testing (see notes below if you want to do that).
+
+# Quorom
+
+For the cluster to work, you need a quorum, a majority of nodes that are in "good" condition without hardware or network failure.
+
+If you don't have a Quorom, the cluster will fail (no VMs or containers running). Here is what you can lose and still have a functioning cluster:
+
+If you have 2 nodes and a voting device, you can lose a node OR the voting device, but not both.
+
+3 nodes, you can lose 1.
+
+4 nodes, you can lose 1.
+
+4 nodes + a voting device, you can lose 2 nodes or 1 node and the voting device.
+
+5 nodes, you can lose 2 nodes.
 
 ## Prep the leader
 
