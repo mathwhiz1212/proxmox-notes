@@ -1,5 +1,9 @@
 Follow these instructions with the following modifications:
 
+Set the root email in proxmox to the email you want the alerts to go to.
+
+Datacenter > Users > root > edit.
+
 export HISTCONTROL="ignoreboth"
 
 to hide any commands with spaces at the beginning, and run the password commands with spaces at the beginning.
@@ -24,6 +28,12 @@ Set ZED_EMAIL_ADDR=
 to the email to send alerts to
 
 I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
+
+# Testing
+
+If you are sure that unplugging a drive won't hurt anything (say you have a mirror or a good backup you just made this instant), you can unplug a drive and see if you get an email.
+
+You can see the degraded state in Node > ZFS.
 
 # Troubleshooting
 
