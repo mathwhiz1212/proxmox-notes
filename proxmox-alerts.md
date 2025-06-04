@@ -27,6 +27,8 @@ to the email to send alerts to
 
 I set ZED_NOTIFY_VERBOSE to 1 temporarily to get all notifications.
 
+Restart the `zfs-zed` service using `systemctl restart zfs-zed`
+
 # Testing
 
 If you are sure that unplugging a drive won't hurt anything (say you have a mirror or a good backup you just made this instant), you can unplug a drive and see if you get an email.
