@@ -1,4 +1,6 @@
-Follow these instructions with the following modifications:
+Follow these instructions with the modifications that follow:
+
+https://technotim.live/posts/proxmox-alerts/
 
 Set the root email in proxmox to the email you want the alerts to go to.
 
@@ -9,8 +11,6 @@ Run: `export HISTCONTROL="ignoreboth"`
 to hide any commands with a space at the beginning, and run the password commands with spaces at the beginning.
 
 You can add this to your `.bashrc` file if you want that to persist across shell instances.
-
-https://technotim.live/posts/proxmox-alerts/
 
 turn on 2FA to allow creation of app password.
 
