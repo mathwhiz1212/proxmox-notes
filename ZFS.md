@@ -25,6 +25,14 @@ Turn off atime (slight reduction in disk wear):
 
 `zfs set atime=off hardpool`
 
+## RAIDz
+
+To create a RAIDz[RAID 5 equivalent) array:
+
+`zpool create hardpool raidz /dev/sdb /dev/sdc /dev/sdd`
+
+You can also use `sdb sdc sdd` instead of `/dev/sdb /dev/sdc /dev/sdd`
+
 ### On physical nodes:
 
 If testing on consumer SSDs, see this SSD wear-reduction script. I'd recommend running the commands one-by-one ONLY when you understand what they do and can choose what to do and not do. The defaults are preferable if you don't understand what you're doing:
