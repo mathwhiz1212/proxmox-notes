@@ -32,6 +32,11 @@ VLAN tag: 400
 
 Leave the physical interface alone.
 
+Simultaneously in an SSH connection to the Proxmox node and in the interface, do the following:
+
+Run in the SSH connection: `sleep 30; reboot`
+In Proxmox: Click apply configuration.
+
 ### Interfaces (/etc/network/interfaces)
 
 ```
@@ -65,3 +70,6 @@ source /etc/network/interfaces.d/*
 
 
 # Configuration
+
+
+Don't check the guest editions checkmark on the pfSense VM.
