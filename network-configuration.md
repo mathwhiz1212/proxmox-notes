@@ -18,6 +18,8 @@ AJ: Or it may pass the VLAN ID through as a nested VLAN ID, which would also cau
 
 It is best to give MacOS devices a PVID because they tend not to play nice with VLANs otherwise.
 
+# Proxmox Node Network Interface Configuration
+
 Create these interfaces in Proxmox under `Node > Network` (do not apply until we're done):
 
 vmbr0 > Edit > Remove gateway and IP.
