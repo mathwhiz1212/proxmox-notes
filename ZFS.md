@@ -29,9 +29,17 @@ Turn off atime (slight reduction in disk wear):
 
 To create a RAIDz[RAID 5 equivalent) array:
 
-`zpool create hardpool raidz /dev/sdb /dev/sdc /dev/sdd`
+`zpool create hardpool raidz1 /dev/sdb /dev/sdc /dev/sdd`
 
 You can also use `sdb sdc sdd` instead of `/dev/sdb /dev/sdc /dev/sdd`
+
+## More Info and Troubleshooting
+
+See: https://pve.proxmox.com/wiki/ZFS_on_Linux
+
+## Replacing a Failed Drive
+
+See: https://askubuntu.com/a/305981
 
 ### On physical nodes:
 
