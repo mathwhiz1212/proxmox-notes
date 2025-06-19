@@ -18,6 +18,18 @@ AJ: Or it may pass the VLAN ID through as a nested VLAN ID, which would also cau
 
 It is best to give MacOS devices a PVID because they tend not to play nice with VLANs otherwise.
 
+Create these interfaces in Proxmox under `Node > Network` (do not apply until we're done):
+
+vmbr0 > Edit > Remove gateway and IP.
+```
+Create > mgmt > Linux VLAN > 172.18.0.230/24 (the Proxmox node IP).
+Gateway 172.18.0.1
+Vlan raw device (the Linux bridge): vmbr0
+VLAN tag: 400
+```
+
+Leave the physical interface alone.
+
 ### Interfaces (/etc/network/interfaces)
 
 ```
