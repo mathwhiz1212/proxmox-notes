@@ -23,4 +23,4 @@ chmod +x proxmox-setup.sh
 ```
 
 # Network Configuration
-https://github.com/mathwhiz1212/proxmox-notes/blob/main/network-configuration.md
+[Network Configuration Documentation](network-configuration.md)
