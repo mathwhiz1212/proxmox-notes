@@ -3,9 +3,10 @@
 ## Create a ZFS Mirror
 
 Create a ZFS mirror (in Proxmox, or by command line if you want/need a custom/matching name). Here is the command line version:
-You may want to verify the drives are using the GPT partition scheme: `gdisk /dev/sdb` [or whatever your disk name is]
 
-It will probably automatically convert it to GPT, THIS WILL DESTROY ALL DATA, BACKUP ALL YOU CARE ABOUT.
+You may want to verify the drives are using the GPT partition scheme: `gdisk /dev/sdX`. Replace X with your disk name, which you can find with `fdisk -l`.
+
+If it is not already using GPT, it will probably automatically convert the partition table to GPT, WHICH WILL DESTROY ALL DATA, BACKUP ALL YOU CARE ABOUT BEFORE RUNNING GDISK.
 
 If it doesn’t, you can type o then enter, and w to write the data to the disk and hit enter. Say y when it asks you to confirm y/n.
 
@@ -13,7 +14,7 @@ Creating a mirrored ZFS pool named `hardpool` using `/dev/sdb` and `/dev/sdc` :
 
 `zpool create hardpool mirror /dev/sdb /dev/sdc`
 
-This name will need to be the same on every node for the cluster to work and it’s not easy to change.
+The pool name (in this case `hardpool`) will need to be the same on every node for the cluster to work properly and it’s not easy to change.
 
 Read: It’s easier to copy the data somewhere else, recreate the pool, and copy the data back than it is to rename it, so **choose your name well.**
 
@@ -27,7 +28,7 @@ Turn off atime (slight reduction in disk wear):
 
 ## RAIDz
 
-To create a RAIDz[RAID 5 equivalent) array:
+To create a RAID (RAID 5 equivalent) array:
 
 `zpool create hardpool raidz1 /dev/sdb /dev/sdc /dev/sdd`
 
@@ -56,7 +57,24 @@ You may see something else like `DEGRADED` instead of `REMOVED` for a bad drive.
 
 You'll want to use that to replace the drive. You don't actually need it unless there's a problem, but if there's a problem, you need it (See: https://askubuntu.com/a/305981).
 
-`zfs hardpool replace 4404938314048604666 [NEW DRIVE GUID]`
+`zpool replace hardpool 4404938314048604666 /dev/disk/by-id/ata-ST1000DM003-1ER162_Z4Y2PWLM`
+
+You can find the disk by-id info by:
+
+ `ls /dev/disk/by-id`
+
+ and grab the first entry. For example, in:
+
+ ```
+ata-ST1000DM003-1ER162_Z4Y2PWLM
+ata-ST1000DM003-1ER162_Z4Y2PWLM-part1
+ata-ST1000DM003-1ER162_Z4Y2PWLM-part2
+```
+Use `ata-ST1000DM003-1ER162_Z4Y2PWLM1`
+ 
+The replacement drive will need to be empty, and preferrably have a GPT partition table. If it doesn't, you can use `gdisk /dev/sdX` to do that (which will **erase all data**).
+
+You can wipe the disk in the Proxmox web interface under `Node > Disks`.
 
 **This is still to be tested, today.**
 
