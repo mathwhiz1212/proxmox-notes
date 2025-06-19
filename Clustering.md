@@ -46,7 +46,8 @@ Install locales instead of locale
 Apt remove fish (if you don’t use fish)
 You may want to enable root login temporarily in /etc/ssh/sshd_config after installing openssh-server
 I did ssh-authorize early so I could run commands vis SSH easier.
-Network Interfaces
+
+# Network Interfaces
 nano /etc/network/interfaces.d/eth0
 auto eth0
 #iface eth0 inet dhcp
@@ -54,6 +55,7 @@ auto eth0
 iface eth0 inet static
   address 172.18.0.239
   gateway 172.18.0.1
+
 In screen
 ifdown eth0 && ifup eth0
 Connect on new IP
@@ -127,7 +129,6 @@ Pvecm add CURRENTNODEIP (IP of a node already in the cluster)
 Pvecm status
 Pvecm nodes
 
-
 Migrating virtualized proxmox nodes.
 Shut down VM.
 Set CPU to x86-64-v2 AES
@@ -152,7 +153,6 @@ Please enter superuser (root) password for '172.18.0.150': *************
 Establishing API connection with host '172.18.0.150'
 500 Can't connect to 172.18.0.150:8006 (hostname verification failed)
 
-
 Or GUI:
 Log in to the web interface on an existing cluster node. Under Datacenter → Cluster, click the Join Information button at the top. Then, click on the button Copy Information. Alternatively, copy the string from the Information field manually.
 
@@ -162,7 +162,6 @@ To enter all required data manually, you can disable the Assisted Join checkbox.
 
 After clicking the Join button, the cluster join process will start immediately. After the node has joined the cluster, its current node certificate will be replaced by one signed from the cluster certificate authority (CA). This means that the current session will stop working after a few seconds. You then might need to force-reload the web interface and log in again with the cluster credentials.
 Now your node should be visible under Datacenter → Cluster.
-
 
 After 2FA was enabled, the GUI worked fine.
 Prior to that:
@@ -192,8 +191,6 @@ Edit to prefer to be on another node to watch migration.
 There cannot be any CD ISOs attached.
 Made the current preferred node go down by changing the vlan in the network device on the VM settings.
 Make Debian netinstall grub boot fast, skip the grub menu.
-
-
 
 After cluster
 Add node names and IPs to /etc/hosts
