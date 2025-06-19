@@ -2,15 +2,19 @@
 
 ## Create a ZFS Mirror
 
-Create a ZFS mirror (in Proxmox, or by command line if you want/need a custom/matching name). Here is the command line version:
+You can create a ZFS mirror in Proxmox, but the command line has more flexbility and works a bit better for my use case. If you do use the GUI, make sure you use the same name for you ZFS pools across your cluster or you will be in for some pain. What follows is the command line method.
+
+### Prep
 
 You may want to verify the drives are using the GPT partition scheme: `gdisk /dev/sdX`. Replace X with your disk name, which you can find with `fdisk -l`.
 
-If it is not already using GPT, it will probably automatically convert the partition table to GPT, WHICH WILL DESTROY ALL DATA, BACKUP ALL YOU CARE ABOUT BEFORE RUNNING GDISK.
+If the disk is not already using GPT, gdisk will automatically convert the partition table to GPT, WHICH WILL DESTROY ALL DATA, BACKUP ALL YOU CARE ABOUT BEFORE RUNNING GDISK. It will ask you to confirm, but still, be careful.
 
-If it doesn’t, you can type o then enter, and w to write the data to the disk and hit enter. Say y when it asks you to confirm y/n.
+You can follow these instructions to write a new GPT partition table to the drive (which will delete all data):
 
-Creating a mirrored ZFS pool named `hardpool` using `/dev/sdb` and `/dev/sdc` :
+Run gdisk `/dev/sdX` type `o` (to write a new GPT table) then `hit enter`, and type `w` to write the data to the disk and `hit enter`. Type `y` and `hit enter` when it asks you to confirm y/n.
+
+### Creating a mirrored ZFS pool named `hardpool` using `/dev/sdb` and `/dev/sdc` :
 
 `zpool create hardpool mirror /dev/sdb /dev/sdc`
 
@@ -18,7 +22,9 @@ The pool name (in this case `hardpool`) will need to be the same on every node f
 
 Read: It’s easier to copy the data somewhere else, recreate the pool, and copy the data back than it is to rename it, so **choose your name well.**
 
-Turn on the newest compression (as of early 2025):
+# Optimizations
+
+Turn on the newest compression algorithm (as of early 2025):
 
 `zfs set compression=lz4 hardpool`
 
