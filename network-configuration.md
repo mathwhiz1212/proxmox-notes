@@ -62,6 +62,9 @@ iface mgmt inet static
 
 source /etc/network/interfaces.d/*
 ```
+### Troubleshooting
+
+If you don't have internet after this configuration, check your VLAN configuration, you'll need the server PVID to be a trunk port.
 
 ### pfSense
 
