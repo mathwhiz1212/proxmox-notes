@@ -14,6 +14,8 @@ You can follow these instructions to write a new GPT partition table to the driv
 
 Run gdisk `/dev/sdX` type `o` (to write a new GPT table) then `hit enter`, and type `w` to write the data to the disk and `hit enter`. Type `y` and `hit enter` when it asks you to confirm y/n.
 
+You can wipe disks in the Proxmox web interface under `Node > Disks`, I think this is a wipe rather than deletion. Deleted data is typically recoverable, especially on SSDs. "Wiping" a drive generally refers to writing random bits of information over the entire drive more than once which makes it very hard to recover any data. That approach only works on old-style hard drives, not solid state drives. I don't know if the Proxmox wipe feature takes advantage of new tech that allows you to wipe SSDs or not.
+
 ### Creating a mirrored ZFS pool named `hardpool` using `/dev/sdb` and `/dev/sdc` :
 
 `zpool create hardpool mirror /dev/sdb /dev/sdc`
@@ -99,8 +101,6 @@ hardpool ONLINE
 ```
 
 This does appear to have the side effect of having the drive be named `ata-ST1000DM003-1ER162_Z4Y2PWLM` in the pool instaed of sdd, but our failed drive has now been replaced!
-
-You can wipe disks in the Proxmox web interface under `Node > Disks`, I believe this is a wipe rather than deletion. Deleted data is typically recoverable, especially on SSDs. "Wiping" a drive generally refers to writing random bits of information over the entire drive more than once which makes it very hard to recover any data.
 
 ### On physical nodes:
 
