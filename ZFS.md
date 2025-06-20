@@ -61,7 +61,13 @@ You may see something else like `DEGRADED` instead of `REMOVED` for a bad drive.
 
 `4404938314048604666` is the GUID of the removed drive.
 
-You'll want to use that to replace the drive. You don't actually need it unless there's a problem, but if there's a problem, you need it (See: https://askubuntu.com/a/305981).
+You'll want to use that to replace the drive. You may be able to get away with not using the GUID, but there are cases where you need it (See: https://askubuntu.com/a/305981).
+
+Make the failed drive offline:
+
+`zpool offline hardpool 4404938314048604666`
+
+Then replace it with the new drive:
 
 `zpool replace hardpool 4404938314048604666 /dev/disk/by-id/ata-ST1000DM003-1ER162_Z4Y2PWLM`
 
@@ -69,7 +75,7 @@ You can find the disk by-id info by:
 
  `ls /dev/disk/by-id`
 
- and grab the first entry. For example, in:
+ Grab the first entry for your drive. For example, in:
 
  ```
 ata-ST1000DM003-1ER162_Z4Y2PWLM
@@ -78,11 +84,23 @@ ata-ST1000DM003-1ER162_Z4Y2PWLM-part2
 ```
 Use `ata-ST1000DM003-1ER162_Z4Y2PWLM1`
  
-The replacement drive will need to be empty, and preferrably have a GPT partition table. If it doesn't, you can use `gdisk /dev/sdX` to do that (which will **erase all data**).
+The replacement drive will need to be empty, and preferrably have a GPT partition table. If it doesn't, [you can use gdisk to do that](https://github.com/mathwhiz1212/proxmox-notes/blob/main/ZFS.md#prep) (which will **erase all data**).
 
-You can wipe the disk in the Proxmox web interface under `Node > Disks`.
+See if everything is looking good now:
 
-**This is still to be tested, today.**
+`zpool status`
+
+```
+hardpool ONLINE
+  raidz1-0 ONLINE
+    sdb ONLINE
+    sdc ONLINE
+    ata-ST1000DM003-1ER162_Z4Y2PWLM ONLINE
+```
+
+This does appear to have the side effect of having the drive be named `ata-ST1000DM003-1ER162_Z4Y2PWLM` in the pool instaed of sdd, but our failed drive has now been replaced!
+
+You can wipe disks in the Proxmox web interface under `Node > Disks`, I believe this is a wipe rather than deletion. Deleted data is typically recoverable, especially on SSDs. "Wiping" a drive generally refers to writing random bits of information over the entire drive more than once which makes it very hard to recover any data.
 
 ### On physical nodes:
 
@@ -90,6 +108,6 @@ If testing on consumer SSDs, see this SSD wear-reduction script. I'd recommend r
 
 https://git.coolaj86.com/josh/proxmox-scripts/raw/branch/main/Proxmox/reduce-ssd-writes.sh
 
-**Do not use in production, or on hard drives.**
+**Do not use this script in production, or on hard drives.**
 
 # ZFS Replication
