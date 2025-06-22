@@ -19,3 +19,6 @@ reboot
 Increment the number of expected votes down to match the number of active nodes. This allows for quorum with fewer votes to manage or recover the cluster:
 
 `pvecm expected x` x is the number of active nodes.
+
+## Disk Failures
+See: https://github.com/mathwhiz1212/proxmox-notes/blob/main/ZFS.md#replacing-a-failed-drive
