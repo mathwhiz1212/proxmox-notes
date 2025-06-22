@@ -102,6 +102,14 @@ hardpool ONLINE
 
 This does appear to have the side effect of having the drive be named `ata-ST1000DM003-1ER162_Z4Y2PWLM` in the pool instaed of sdd, but our failed drive has now been replaced!
 
+More docs for troubleshooting:
+
+https://docs.oracle.com/cd/E36784_01/html/E36835/gbbvf.html
+https://docs.oracle.com/cd/E36784_01/html/E36835/gbbvb.html
+https://docs.oracle.com/cd/E19253-01/819-5461/gazgk/index.html
+https://docs.oracle.com/cd/E19253-01/819-5461/gazgk/index.html
+https://forums.freebsd.org/threads/zfs-raidz1-0-raidz.27277/
+
 ### On physical nodes:
 
 If testing on consumer SSDs, see this SSD wear-reduction script. I'd recommend running the commands one-by-one ONLY when you understand what they do and can choose what to do and not do. The defaults are preferable if you don't understand what you're doing:
