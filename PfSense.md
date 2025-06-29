@@ -20,4 +20,4 @@ Use the duplicate icon to duplicate the Dynamic DNS updater for other domains an
 
 You will need to make sure the record you want to update is `A + Dynamic DNS` and not just an `A` record.
 
-**Backup your PfSense configuration.**
+**Backup your PfSense configuration to a secure location.**
