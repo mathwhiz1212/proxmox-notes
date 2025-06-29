@@ -1,3 +1,9 @@
+# Install
+
+Don't check the guest editions checkmark on the pfSense VM in Proxmox.
+
+# Configuration
+
 # Dynamic DNS
 
 Go to pfsense > Services > Dynamic DNS
