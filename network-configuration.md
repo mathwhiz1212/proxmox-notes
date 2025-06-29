@@ -66,13 +66,4 @@ source /etc/network/interfaces.d/*
 
 If you don't have internet after this configuration, check your VLAN configuration, you'll need the server PVID to be a trunk port.
 
-### pfSense
-
-# Install
-
-
-
-# Configuration
-
-
-Don't check the guest editions checkmark on the pfSense VM.
+### [pfSense](PfSense.md)
