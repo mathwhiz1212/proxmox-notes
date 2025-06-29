@@ -31,3 +31,5 @@ Check the box for `Do not backup package information.` and make sure `Do not bac
 You can, and probably should, encrypt the file if the storage you are saving it to is not encrypted itself.
 
 Save the `.xml` backup file somewhere safe.
+
+NOTE TO SELF: Update with my docs: https://docs.google.com/document/d/14MXJ6jj2wq-zlGDdJentC4fKeSjKSJmE7h0zzJzOzVA/edit?tab=t.0
