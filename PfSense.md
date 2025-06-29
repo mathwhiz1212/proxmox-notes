@@ -1,10 +1,12 @@
-# Install
+# PfSense
+
+## Install
 
 Don't check the guest editions checkmark on the pfSense VM in Proxmox.
 
-# Configuration
+## Configuration
 
-# Dynamic DNS
+## Dynamic DNS
 
 Go to pfsense > Services > Dynamic DNS
 
@@ -28,7 +30,7 @@ You will need to make sure the record you want to update is `A + Dynamic DNS` an
 
 **Backup your PfSense configuration to a secure location.**
 
-# Backup
+## Backup
 
 Go to `PfSense > Diagnostics > Backup and Restore`
 
