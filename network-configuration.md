@@ -36,34 +36,3 @@ Simultaneously in an SSH connection to the Proxmox node and in the interface, do
 
 Run in the SSH connection: `sleep 30; reboot`
 In Proxmox: Click apply configuration.
-
-### Interfaces (/etc/network/interfaces)
-
-```
-auto lo
-iface lo inet loopback
-
-iface enp3s0 inet manual
-
-auto vmbr0
-iface vmbr0 inet manual
-	bridge-ports enp3s0
-	bridge-stp off
-	bridge-fd 0
-	bridge-vlan-aware yes
-	bridge-vids 2-4094
-
-auto mgmt
-iface mgmt inet static
-	address 172.18.0.210/24
-	gateway 172.18.0.1
-	vlan-id 400
-	vlan-raw-device vmbr0
-
-source /etc/network/interfaces.d/*
-```
-### Troubleshooting
-
-If you don't have internet after this configuration, check your VLAN configuration, you'll need the server PVID to be a trunk port.
-
-### [pfSense](PfSense.md)
