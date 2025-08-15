@@ -52,10 +52,21 @@ Click on the `pfsense1` VM and the options tab. Double-left click on `protection
 
 This helps prevent against accidental deletion.
 
-# Installing PfSense
-Click on the console tab.
+# Creating Virtual Network Interfaces
 
-## Configuration
+
+# Installing PfSense
+Double-click on the VM name `pfsense1` to open a new VNC window.
+
+Accept the aggreement by hitting enter.
+Select Install and hit enter.
+guided-ufs disk setup. GPT partition table.
+`# We're not doing ZFS because ZFS on ZFS is not good.`
+Finish
+Commit.
+Reboot.
+
+## Initial Configuration
 
 ## Dynamic DNS
 
