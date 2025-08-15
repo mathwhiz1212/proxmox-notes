@@ -149,6 +149,8 @@ n to HTTP
 
 Reboot the PfSense VM. If your network is broken, you may need to do this using the network switch that PfSense is plugged into. Depending on your VLAN configuration on that switch, you may need to figure out which port is a managmenet port (you documented that, right?)
 
+If you can ping an IP, but cannot otherwise access it, try checking your firewall rules in PfSense and your subnet mask on EVERYTHING. I've had misconfigured subnets on something in the chain mess up communication a few times recently.
+
 ## Dynamic DNS
 
 Go to pfsense > Services > Dynamic DNS
