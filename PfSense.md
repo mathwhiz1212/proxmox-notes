@@ -42,7 +42,7 @@ Uncheck ballooning device. This is normally a good thing, but for this use case,
 
 Network
 
-We're using our `vmbr0` Linux bridge and our management network VLAN (400 in my case).
+We're using our `vmbr0` Linux bridge and our WAN network VLAN (500 in my case).
 
 Uncheck firewall.
 
@@ -53,7 +53,14 @@ Click on the `pfsense1` VM and the options tab. Double-left click on `protection
 This helps prevent against accidental deletion.
 
 # Creating Virtual Network Interfaces
+Click on pfsense 1 > hardware > add > network device.
+Bridge: vmbr0
+VLAN tag: 400 (this is my maangement network for PfSense and Proxmox).
+Firewall: Uncheck this.
 
+Repeat as needed. I like to have 1 interface for the WAN like we created in the install, 1 managment interface, and 1 interface that I can use for all the Proxmox VNets I put in PfSense later. That last interface should **not** have a VLAN tag.
+
+Remember to uncheck the firewall on each interface you create. PfSense IS a firewall and we want traffic to be able to get to it.
 
 # Installing PfSense
 Double-click on the VM name `pfsense1` to open a new VNC window.
@@ -102,4 +109,11 @@ You can, and probably should, encrypt the file if the storage you are saving it 
 
 Save the `.xml` backup file somewhere safe.
 
-NOTE TO SELF: Update with my docs: https://docs.google.com/document/d/14MXJ6jj2wq-zlGDdJentC4fKeSjKSJmE7h0zzJzOzVA/edit?tab=t.0
+NOTE TO SELF: Update with my docs: 
+
+# Extra FYIs
+
+When you create a new network interface or VM Proxmox, it defaults to the `BC:24:11` MAC  address prefix, the "vender prefix" for Proxmox: https://www.macvendorlookup.com/search/BC:24:11:00:00:00
+
+To isolate Guest VMs from each other, you have to turn on the VM firewall because they are not accessing each other through the PfSense router, but through a virtual switch.
+https://docs.google.com/document/d/14MXJ6jj2wq-zlGDdJentC4fKeSjKSJmE7h0zzJzOzVA/edit?tab=t.0
