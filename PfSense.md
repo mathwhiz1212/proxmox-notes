@@ -2,6 +2,39 @@
 
 ## Install
 
+### Create VM
+```
+Download the PfSense ISO into your local storage.
+
+ISO images > Download from URL > https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-2.7.2-RELEASE-amd64.iso.gz
+
+Leave the defaults and let it use gzip to decompress the ISO.
+
+# This (2.7.2) is the latest CE release that doesn't require an account. 2.8.x requires an account and introduces breaking changes. You can view 2.7.2 and earlier here: https://atxfiles.netgate.com/mirror/downloads/
+
+Right-click on your node and click "Create VM".
+
+Node: The main one you want to use.
+VM ID (something at the beginning of a range you're not using for anything but networking): 4000
+Name: pfsense1
+Start at Boot (check the box)
+Tag: mgmt
+```
+
+Select your ISO storage and the `pfSense-CE-2.7.2-RELEASE-amd64.iso` file we downloaded earlier. Click next.
+
+Click next on the system tab to accept the defaults.
+
+On Disks, select 8GB unless you plan to do more intense logging. NOTE: It is easier to expand than shrink virtual disks.
+
+Check `Discard` and `SSD emulation` (you may need to check `Advanced` to see this. Leave the other defaults, and especially leave backups checked and DO NOT check skip replication. It is needed for ZFS replication-backed high-availability setups.
+
+Under CPU, give it 2 cores. You can adjust the type to the lowest version your CPUs support for best performance: 
+
+In absolutely identical CPUs through the entire cluster, you can use `host`. If you do not have absolutely identical CPUs, this will break moving VMs between nodes, or replication.
+
+Enable protection under `pfsense1` > options to prevent against accidental deletion.
+
 Don't check the guest editions checkmark on the pfSense VM in Proxmox.
 
 ## Configuration
