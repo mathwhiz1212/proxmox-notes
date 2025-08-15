@@ -87,9 +87,62 @@ If you added an optional interface for other VNets, you will be prompted to inpu
 
 Type y and hit enter to proceed.
 
+# IP Address Config
 
+When you see `Welcome to PfSense` and a list of interfaces, hit 2 to set IP addresses.
 
+I'll do 1 to select the WAN interface. n to DHCP.
 
+I'll do `192.168.1.204/24` because this sits on my home internet network. Make sure this won't conflict with an other IP addresses on your network.
+
+`192.168.1.1` is the default upstream gateway for this network.
+
+I will hit `y` and enter to add this as the default gateway.
+
+y to IPv6 DHCP.
+
+n to DHCP on WAN. I don't want PfSense giving out IPs on my home network.
+
+n to reverting to HTTP.
+
+### GUI setup.
+
+Go the IP you just set for the WAN interface.
+
+It will give you a security warning because PfSense is using a self-signed certificate.
+
+Click advanced > continue.
+
+Enter:
+
+username: admin
+password: pfsense
+
+Next > Next
+
+hostname: pfSense1
+domain: homelab.lan
+
+Leave DNS servers blank.
+
+### CLI LAN setup.
+
+Hit 2 and 2 to setup the LAN interface.
+
+`n` to DHCP.
+
+We'll use `172.20.0.1/16` for the LAN interface IP.
+
+Hit enter without entering a gateway because this is a LAN interface.
+
+y to IPv6 DHCP.
+
+y to DHCP on LAN.
+
+Start: `172.20.0.100`
+End: `172.20.0.199`
+
+n to HTTP
 
 
 ## Troubleshooting
