@@ -29,13 +29,31 @@ On Disks, select 8GB unless you plan to do more intense logging. NOTE: It is eas
 
 Check `Discard` and `SSD emulation` (you may need to check `Advanced` to see this. Leave the other defaults, and especially leave backups checked and DO NOT check skip replication. It is needed for ZFS replication-backed high-availability setups.
 
-Under CPU, give it 2 cores. You can adjust the type to the lowest version your CPUs support for best performance: 
+Under CPU, give it 2 cores.
 
-In absolutely identical CPUs through the entire cluster, you can use `host`. If you do not have absolutely identical CPUs, this will break moving VMs between nodes, or replication.
+You can adjust the type to the lowest version your oldest CPU in the cluster supports for best performance: https://qemu.readthedocs.io/en/master/system/qemu-cpu-models.html
 
-Enable protection under `pfsense1` > options to prevent against accidental deletion.
+In absolutely identical CPUs through the entire cluster, you can use `host`.
 
-Don't check the guest editions checkmark on the pfSense VM in Proxmox.
+Choose the wrong `type` will break moving VMs between nodes, and replication, so if you're new, you can just leave the default `x86-64-v2-AES` value.
+
+Memory: 1024MB
+Uncheck ballooning device. This is normally a good thing, but for this use case, we're leaving it off.
+
+Network
+
+We're using our `vmbr0` Linux bridge and our management network VLAN (400 in my case).
+
+Uncheck firewall.
+
+Click next. Check "Start on creation".
+
+Click on the `pfsense1` VM and the options tab. Double-left click on `protection`, check enabled, and click ok.
+
+This helps prevent against accidental deletion.
+
+# Installing PfSense
+Click on the console tab.
 
 ## Configuration
 
