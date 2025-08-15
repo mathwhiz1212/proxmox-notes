@@ -73,9 +73,28 @@ Finish
 Commit.
 Reboot.
 
-## Initial Configuration
+## Initial Interface Configuration
 
 When you first boot up, it will ask you to configure your network interfaces. You can skip VLAN configuration for now. We'll do that in the web interface later, you can acces the internet (WAN) and the management network and that's all we need to start.
+
+Say no to VLANs - type `no` and hit enter.
+
+Enter the WAN interface name, probably `vtnet0` if you followed my instructions above.
+
+Then the LAN interface name, probably `vtnet1` if you followed my instructions above.
+
+If you added an optional interface for other VNets, you will be prompted to input that interface name, likely `vtnet2` if you followed how I normally do things, but check for which interface doesn't have a VLAN tag to be sure.
+
+Type y and hit enter to proceed.
+
+
+
+
+
+
+## Troubleshooting
+
+Reboot the PfSense VM. If your network is broken, you may need to do this using the network switch that PfSense is plugged into. Depending on your VLAN configuration on that switch, you may need to figure out which port is a managmenet port (you documented that, right?)
 
 ## Dynamic DNS
 
