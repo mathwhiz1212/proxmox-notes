@@ -75,6 +75,8 @@ Reboot.
 
 ## Initial Configuration
 
+When you first boot up, it will ask you to configure your network interfaces. You can skip VLAN configuration for now. We'll do that in the web interface later, you can acces the internet (WAN) and the management network and that's all we need to start.
+
 ## Dynamic DNS
 
 Go to pfsense > Services > Dynamic DNS
@@ -112,6 +114,8 @@ Save the `.xml` backup file somewhere safe.
 NOTE TO SELF: Update with my docs: 
 
 # Extra FYIs
+
+Don't change the MAC address for any PfSense interface while it is running. Learned that the hard way.
 
 When you create a new network interface or VM Proxmox, it defaults to the `BC:24:11` MAC  address prefix, the "vender prefix" for Proxmox: https://www.macvendorlookup.com/search/BC:24:11:00:00:00
 
