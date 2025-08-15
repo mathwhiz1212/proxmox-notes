@@ -47,7 +47,7 @@ This is NOT how to give PfSense different IP addresses, those IP addresses are c
 
 If you want the node itself to have more than one IP address, you can do the following:
 
-WARNING: If you do this, you can never edit the network interface in the Proxmox GUI again. Failing to remember that fact will lead to all but one (probably the last listed) IP to be deleted.
+WARNING: If you do this, you can never edit any network interfaces on that node in the Proxmox GUI again. Failing to remember that fact will lead to all but one (probably the last listed) IP to be deleted, and VLAN configurations to be broken.
 
 In `/etc/network/interfaces`:
 
