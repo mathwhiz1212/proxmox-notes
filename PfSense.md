@@ -170,6 +170,59 @@ Scroll down and click save. Apply changes.
 
 On DHCP you can use DNS Servers: `172.20.0.1`, `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
 
+### VLAN Interface (Guest Network)
+
+Interface > assignments > VLANs
+
+Add > Enter VLAN tag.
+
+Go back to assignments and select the interface that has that VLAN tag under VLAN [Tag number] on [Physical interface name].
+
+Enable interface.
+
+Description: `GUEST1`
+
+Static IPv4.
+
+IPv4: `10.0.0.0/16`
+
+Save.
+
+### Firewall Rules
+
+Interface rules and floating rules with the Quick (apply action immediately on match) are applied top to bottom.
+Floating rules apply before interface rules.
+
+Floating > Add >
+
+Allow ping from any subnet: 
+
+Pass, check apply the action immediately on match, any interface, protocol (ICMP echoreq), source, destination - This Firewall (self). Description: `Allow ping from any inteface.`
+
+Allow access to this firewall for DNS from anything but my home network (WAN):
+
+Pass, check apply the action immediately on match: ! WAN subnets, destination This Firewall (self), port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
+
+Block inter-guest traffic:
+
+Block, Apply action immediately, any protocol, source `10.0.0.0/16`, destination `10.0.0.0/16`. Description: Block Inter-Guest Traffic.
+
+### LAN/Mgmt
+
+By default, the anti-Lockout Rule should be enabled, as well as default to any IPv4 and IPv6 rules.
+
+### GUEST1
+
+Block, Source: GUEST1 Subnets Destination LAN subnets. Description: Block traffic to LAN (172.20.0.0/16).
+
+Block, Source: GUEST1 Subnets Destination WAN subnets. Description: Block traffic to WAN (192.168.1.0/24).
+
+And repeat for any other subnets.
+
+Disable allow any to IPv6.
+
+Leave the allow to any IPv4 at the bottom.
+
 ### CLI LAN setup.
 
 Hit 2 and 2 to setup the LAN interface.
