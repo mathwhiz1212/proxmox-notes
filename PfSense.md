@@ -197,15 +197,17 @@ Floating > Add >
 
 Allow ping from any subnet: 
 
-Pass, check apply the action immediately on match, any interface, protocol (ICMP echoreq), source, destination - This Firewall (self). Description: `Allow ping from any inteface.`
+Pass, check apply the action immediately on match, any interface, protocol (ICMP echo request), source, destination - This Firewall (self). Description: `Allow ping from any inteface to this firewall.`
 
 Allow access to this firewall for DNS from anything but my home network (WAN):
 
-Pass, check apply the action immediately on match: ! WAN subnets, destination This Firewall (self), port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
+Pass, check apply the action immediately on match: Source: Invert match `WAN Subnets`, destination `This Firewall (self)`, protocol: TCP/UDP, port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
 
 Block inter-guest traffic:
 
 Block, Apply action immediately, any protocol, source `10.0.0.0/16`, destination `10.0.0.0/16`. Description: Block Inter-Guest Traffic.
+
+Save (at bottom) and Apply (at top).
 
 ### LAN/Mgmt
 
@@ -213,13 +215,19 @@ By default, the anti-Lockout Rule should be enabled, as well as default to any I
 
 ### GUEST1
 
-Block, Source: GUEST1 Subnets Destination LAN subnets. Description: Block traffic to LAN (172.20.0.0/16).
+Click on GUEST1. We want to deny access to other subnets so the guests can't access them.
 
-Block, Source: GUEST1 Subnets Destination WAN subnets. Description: Block traffic to WAN (192.168.1.0/24).
+Block, Source: GUEST1 Subnets, Destination: LAN subnets. Destination port range: any.
 
-And repeat for any other subnets.
+Description: `Block traffic to LAN (172.20.0.0/16).`
 
-Disable allow any to IPv6.
+Block, Source: GUEST1 Subnets, Destination: WAN subnets, Destination Port Range: any.
+
+Description: `Block traffic to WAN (192.168.1.0/24).`
+
+And repeat for any other subnets you don't want the guest network to access.
+
+Disable allow any to IPv6 if it exists.
 
 Leave the allow to any IPv4 at the bottom.
 
