@@ -209,6 +209,18 @@ Block, Apply action immediately, any protocol, source `10.0.0.0/16`, destination
 
 Save (at bottom) and Apply (at top).
 
+### A better way (edit this into the other part).
+
+New Alias:
+
+PRIVATEIPs	Network(s)	10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16	RFC1918 Private Networks 
+
+New rule on GUEST1 allow to all destination: (invert) PRIVATEIPs
+
+Can create rules above this for exceptioms.
+
+enable vm firewall to block inter-guest traffic that doesn't go through the router. Anytime you have a physical or virtual switch.
+
 ### LAN/Mgmt
 
 By default, the anti-Lockout Rule should be enabled, as well as default to any IPv4 and IPv6 rules.
