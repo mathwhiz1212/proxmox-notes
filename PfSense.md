@@ -68,6 +68,9 @@ Double-click on the VM name `pfsense1` to open a new VNC window.
 Accept the aggreement by hitting enter.
 Select Install and hit enter.
 guided-ufs disk setup. GPT partition table.
+
+Do manual install, or disable swap afterward in `/etc/fstab` by commenting out #. Can use `nano` `pkg install nano`
+
 `# We're not doing ZFS because ZFS on ZFS is not good.`
 Finish
 Commit.
@@ -153,13 +156,9 @@ Scroll down and click save. Apply changes.
 
 `172.20.0.1`, `1.1.1.1`, and `9.9.9.9` on DNS server in setup. It will default to PfSense and fall back on remote DNS.
 
-On DHCP you can use DNS Servers: 1.1.1.1, 9.9.9.9, and 8.8.8.8
+On DHCP you can use DNS Servers: `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
 
 Use consistent subnets on client and router config starting out.
-
-pkg install nano
-
-Do manual install, or disable swap afterward in /etc/fstab by commenting out #.
 
 ### CLI LAN setup.
 
@@ -218,7 +217,7 @@ Check the box for `Do not backup package information.` and make sure `Do not bac
 
 You can, and probably should, encrypt the file if the storage you are saving it to is not encrypted itself.
 
-Save the `.xml` backup file somewhere safe.
+Save the `.xml` backup file somewhere safe, perferably an encrypted archive you have easy access to in an emergency.
 
 NOTE TO SELF: Update with my docs: 
 
@@ -230,3 +229,5 @@ When you create a new network interface or VM Proxmox, it defaults to the `BC:24
 
 To isolate Guest VMs from each other, you have to turn on the VM firewall because they are not accessing each other through the PfSense router, but through a virtual switch.
 https://docs.google.com/document/d/14MXJ6jj2wq-zlGDdJentC4fKeSjKSJmE7h0zzJzOzVA/edit?tab=t.0
+
+Proxmox DNS settings affect VMs default DNS.
