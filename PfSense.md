@@ -107,11 +107,11 @@ n to reverting to HTTP.
 
 ### GUI setup.
 
-Go the IP you just set for the WAN interface.
+Get on the same WAN subnet as PfSense and go to the IP you just set for the WAN interface.
 
 It will give you a security warning because PfSense is using a self-signed certificate.
 
-Click advanced > continue.
+Click advanced > Proceed unsafe.
 
 Enter:
 
@@ -123,7 +123,43 @@ Next > Next
 hostname: pfSense1
 domain: homelab.lan
 
-Leave DNS servers blank.
+DNS servers `1.1.1.1`, `9.9.9.9`.
+
+Enter timezone and leave NTP server as-is.
+
+You may have to put the upstream gateway again.
+
+Leave the other settings as default and hit next.
+
+Input 172.20.0.1 and 16 for the subnet mask.
+
+Enter the admin password for PfSense, then do so again.
+
+Reload.
+
+Finish.
+
+# Create LAN interface and enable DHCP server.
+
+Use the LAN CLI instructions below if you can't get access to PfSense on the WAN network for some reason.
+
+Services > DHCP server. Click on the notice to switch to Kea DHCP. Scroll down and click save.
+
+Enable DHCP on LAN interface.
+
+Input the DHCP range .100-.199
+
+Scroll down and click save. Apply changes.
+
+`172.20.0.1`, `1.1.1.1`, and `9.9.9.9` on DNS server in setup. It will default to PfSense and fall back on remote DNS.
+
+On DHCP you can use DNS Servers: 1.1.1.1, 9.9.9.9, and 8.8.8.8
+
+Use consistent subnets on client and router config starting out.
+
+pkg install nano
+
+Do manual install, or disable swap afterward in /etc/fstab by commenting out #.
 
 ### CLI LAN setup.
 
@@ -143,7 +179,6 @@ Start: `172.20.0.100`
 End: `172.20.0.199`
 
 n to HTTP
-
 
 ## Troubleshooting
 
