@@ -126,7 +126,7 @@ Next > Next
 hostname: pfSense1
 domain: homelab.lan
 
-DNS servers `1.1.1.1`, `9.9.9.9`.
+DNS servers `1.1.1.1`, `9.9.9.9`. It will default to PfSense's default DNS and fall back on remote DNS as needed.
 
 Enter timezone and leave NTP server as-is.
 
@@ -168,9 +168,7 @@ Input the DHCP range .100-.199
 
 Scroll down and click save. Apply changes.
 
-`172.20.0.1`, `1.1.1.1`, and `9.9.9.9` on DNS server in setup. It will default to PfSense and fall back on remote DNS.
-
-On DHCP you can use DNS Servers: `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
+On DHCP you can use DNS Servers: `172.20.0.1`, `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
 
 ### CLI LAN setup.
 
