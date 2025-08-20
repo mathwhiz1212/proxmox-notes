@@ -158,17 +158,19 @@ IPv4 address 172.20.0.1.
 
 Save.
 
-### Enable DHCP server.
+# Enable DHCP server.
 
 Services > DHCP server. Click on the notice to switch to Kea DHCP. Scroll down and click save.
 
-Enable DHCP on the LAN interface.
+Go back to Services > DHCP server. Click on the LAN interface.
+
+Enable DHCP on the LAN Interface.
 
 Input the DHCP range .100-.199
 
-Scroll down and click save. Apply changes.
+DNS Servers: Leave the first line 172.20.0.1, 1.1.1.1, 9.9.9.9, and 8.8.8.8.
 
-On DHCP you can use DNS Servers: `172.20.0.1`, `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
+Scroll down and click save. Apply changes at the top.
 
 ### VLAN Interface (Guest Network)
 
@@ -177,6 +179,8 @@ Interface > assignments > VLANs
 Add > Enter VLAN tag.
 
 Go back to assignments and select the interface that has that VLAN tag under VLAN [Tag number] on [Physical interface name].
+
+Add the interface with the VLAN, click on the new interface that created.
 
 Enable interface.
 
@@ -187,6 +191,20 @@ Static IPv4.
 IPv4: `10.0.0.0/16`
 
 Save.
+
+### Enable DHCP
+
+# Enable DHCP server.
+
+Services > DHCP server.
+
+Click on the GUEST1 interface.
+
+Enable DHCP on the GUEST1 Interface.
+
+Input the DHCP range .100-.199
+
+DNS Servers: Leave the first line 10.0.0.1, 1.1.1.1, 9.9.9.9, and 8.8.8.8.
 
 ### Firewall Rules
 
@@ -210,6 +228,8 @@ Block, Apply action immediately, any protocol, source `10.0.0.0/16`, destination
 Save (at bottom) and Apply (at top).
 
 ### A better way (edit this into the other part).
+
+Test that it blocks inter-guest traffic too.
 
 New Alias:
 
