@@ -142,13 +142,27 @@ Reload.
 
 Finish.
 
-# Create LAN interface and enable DHCP server.
+# Create LAN interface
 
-Use the LAN CLI instructions below if you can't get access to PfSense on the WAN network for some reason.
+Use the LAN CLI instructions below if you can't access PfSense on the WAN network.
+
+Interfaces > Assignments > LAN
+
+Enable interface.
+
+LAN - mgmt
+
+Static IPv4.
+
+IPv4 address 172.20.0.1.
+
+Save.
+
+### Enable DHCP server.
 
 Services > DHCP server. Click on the notice to switch to Kea DHCP. Scroll down and click save.
 
-Enable DHCP on LAN interface.
+Enable DHCP on the LAN interface.
 
 Input the DHCP range .100-.199
 
@@ -157,8 +171,6 @@ Scroll down and click save. Apply changes.
 `172.20.0.1`, `1.1.1.1`, and `9.9.9.9` on DNS server in setup. It will default to PfSense and fall back on remote DNS.
 
 On DHCP you can use DNS Servers: `1.1.1.1`, `9.9.9.9`, and `8.8.8.8`.
-
-Use consistent subnets on client and router config starting out.
 
 ### CLI LAN setup.
 
@@ -219,9 +231,13 @@ You can, and probably should, encrypt the file if the storage you are saving it 
 
 Save the `.xml` backup file somewhere safe, perferably an encrypted archive you have easy access to in an emergency.
 
-NOTE TO SELF: Update with my docs: 
+NOTE TO SELF: Update with my docs.
 
 # Extra FYIs
+
+Use consistent subnets on client and router config until you have a known good working configuration.
+
+Proxmox DNS settings affect VMs default DNS.
 
 Don't change the MAC address for any PfSense interface while it is running. Learned that the hard way.
 
@@ -229,5 +245,3 @@ When you create a new network interface or VM Proxmox, it defaults to the `BC:24
 
 To isolate Guest VMs from each other, you have to turn on the VM firewall because they are not accessing each other through the PfSense router, but through a virtual switch.
 https://docs.google.com/document/d/14MXJ6jj2wq-zlGDdJentC4fKeSjKSJmE7h0zzJzOzVA/edit?tab=t.0
-
-Proxmox DNS settings affect VMs default DNS.
