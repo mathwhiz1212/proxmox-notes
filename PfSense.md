@@ -216,7 +216,7 @@ DNS servers `1.1.1.1`, `9.9.9.9`. It will default to PfSense's default DNS and f
 
 Enter timezone and leave NTP server as-is.
 
-You may have to put the upstream gateway again.
+You may have to put the upstream gateway again. 192.168.1.1 in my config.
 
 Leave the other settings as default and hit next.
 
@@ -227,6 +227,8 @@ Enter the admin password for PfSense, then do so again.
 Reload.
 
 Finish.
+
+Accep the license agreement.
 
 # Create LAN interface in the GUI (if you didn't do it in the CLI).
 
@@ -252,9 +254,9 @@ Go back to Services > DHCP server. Click on the LAN interface.
 
 Enable DHCP on the LAN Interface.
 
-Input the DHCP range .100-.199
+Input the DHCP range .100-.199 (yes this got reset, IDK why).
 
-DNS Servers: Leave the first line 172.20.0.1, 1.1.1.1, 9.9.9.9, and 8.8.8.8.
+DNS Servers: Leave the first line 172.20.0.1 (or whatever), 1.1.1.1, 9.9.9.9, and 8.8.8.8.
 
 Scroll down and click save. Apply changes at the top.
 
@@ -307,25 +309,35 @@ Allow access to this firewall for DNS from anything but my home network (WAN):
 
 Pass, check apply the action immediately on match: Source: Invert match `WAN Subnets`, destination `This Firewall (self)`, protocol: TCP/UDP, port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
 
-Block inter-guest traffic:
-
-Block, Apply action immediately, any protocol, source `10.0.0.0/16`, destination `10.0.0.0/16`. Description: Block Inter-Guest Traffic.
-
 Save (at bottom) and Apply (at top).
 
 ### A better way (edit this into the other part).
 
-Test that it blocks inter-guest traffic too.
+Firewall ALias > Add:
 
-New Alias:
+Name: PRIVATEIPs
+Descrition: RFC1918 Private Networks 
+Type: Network(s)
 
-PRIVATEIPs	Network(s)	10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16	RFC1918 Private Networks 
+10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16	
 
-New rule on GUEST1 allow to all destination: (invert) PRIVATEIPs
+Click Add network after each.
+Save and apply.
 
-Can create rules above this for exceptioms.
+New rule on Firewall > Rules > GUEST1
 
-enable vm firewall to block inter-guest traffic that doesn't go through the router. Anytime you have a physical or virtual switch.
+Protocol: Any
+
+Source: Any
+
+Destination (check invert match)
+Address or Alias: PRIVATEIPs
+
+You can create rules above this for exceptioms.
+
+You will also need to enable the VM firewalls to block inter-guest traffic that doesn't go through the router.
 
 ### LAN/Mgmt
 
