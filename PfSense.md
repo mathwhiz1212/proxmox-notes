@@ -334,6 +334,7 @@ Source: Any
 
 Destination (check invert match)
 Address or Alias: PRIVATEIPs
+Save and apply.
 
 You can create rules above this for exceptioms.
 
