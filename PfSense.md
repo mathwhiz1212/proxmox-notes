@@ -125,39 +125,76 @@ Reboot.
 
 ## Initial Interface Configuration
 
-When you first boot up, it will ask you to configure your network interfaces. You can skip VLAN configuration for now. We'll do that in the web interface later, you can acces the internet (WAN) and the management network and that's all we need to start.
+When you first boot up, it will ask you to configure your network interfaces. 
 
-Say no to VLANs - type `no` and hit enter.
+You see `vtnet0: linnk state changed to UP`
 
-Enter the WAN interface name, probably `vtnet0` if you followed my instructions above.
+and somewhere below `Should VLANs be set up now [y/n]?`
 
-Then the LAN interface name, probably `vtnet1` if you followed my instructions above.
+type n and hit enter (unless you need to specify VLANs here instead of in the virtual interface).
 
-If you added an optional interface for other VNets, you will be prompted to input that interface name, likely `vtnet2` if you followed how I normally do things, but check for which interface doesn't have a VLAN tag to be sure.
+Enter the WAN interface name, probably `vtnet0` if you followed the instructions above.
+
+Then enter the LAN interface name, probably `vtnet1` if you followed the instructions above.
+
+If you added an optional interface for other VNets, you will be prompted to input that interface name, likely `vtnet2` if you followed the instructions above.
 
 Type y and hit enter to proceed.
 
 # IP Address Config
 
-When you see `Welcome to PfSense` and a list of interfaces, hit 2 to set IP addresses.
+When you see `Welcome to PfSense` and a list of interfaces, see if there is a valid IP address you can connect to that is on a subnet you can get on. If there is, skip to GUI config below.
+
+If not, keep reading.
+
+Hit 2 to set IP addresses.
 
 I'll do 1 to select the WAN interface. n to DHCP.
 
-I'll do `192.168.1.204/24` because this sits on my home internet network. Make sure this won't conflict with an other IP addresses on your network.
+I'll do `192.168.1.205/24` because this network has an upstream router and other devices I don't want to conflict with.
 
-`192.168.1.1` is the default upstream gateway for this network.
+`192.168.1.1` is the upstream gateway (the perimeter router that talks to the modem).
 
 I will hit `y` and enter to add this as the default gateway.
 
-y to IPv6 DHCP.
+I'm not configuring IPv6 so I'm going to answer
+
+n to IPv6 DHCP. and hit enter again for no IPv6 address.
 
 n to DHCP on WAN. I don't want PfSense giving out IPs on my home network.
 
-n to reverting to HTTP.
+n to reverting to HTTP. We want admin logins to always happen over HTTPS.
+
+Hit enter.
+
+### CLI LAN setup.
+
+We'll go ahead and set up the LAN config in the CLI.
+
+Hit 2 and 2 to setup the LAN interface.
+
+`n` to DHCP.
+
+We'll use `172.20.0.1/16` for the LAN interface IP.
+
+Hit enter without entering a gateway because this is a LAN interface.
+
+n to IPv6 DHCP. Enter to not enter an IPv6 address.
+
+y to DHCP on LAN.
+
+Start: `172.20.0.100`
+End: `172.20.0.199`
+
+n to HTTP
+
+Hit enter.
 
 ### GUI setup.
 
-Get on the same WAN subnet as PfSense and go to the IP you just set for the WAN interface.
+Get on the same LAN subnet as PfSense and go to the IP you just set for the LAN interface.
+
+If you have trouble connecting, try to make sure that you are plugged into the same switch as the Proxmox node that is running PfSense is plugged into.
 
 It will give you a security warning because PfSense is using a self-signed certificate.
 
@@ -189,7 +226,7 @@ Reload.
 
 Finish.
 
-# Create LAN interface
+# Create LAN interface in the GUI (if you didn't do it in the CLI).
 
 Use the LAN CLI instructions below if you can't access PfSense on the WAN network.
 
@@ -309,25 +346,6 @@ And repeat for any other subnets you don't want the guest network to access.
 Disable allow any to IPv6 if it exists.
 
 Leave the allow to any IPv4 at the bottom.
-
-### CLI LAN setup.
-
-Hit 2 and 2 to setup the LAN interface.
-
-`n` to DHCP.
-
-We'll use `172.20.0.1/16` for the LAN interface IP.
-
-Hit enter without entering a gateway because this is a LAN interface.
-
-y to IPv6 DHCP.
-
-y to DHCP on LAN.
-
-Start: `172.20.0.100`
-End: `172.20.0.199`
-
-n to HTTP
 
 ## Troubleshooting
 
