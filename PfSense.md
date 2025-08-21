@@ -143,7 +143,7 @@ Type y and hit enter to proceed.
 
 # IP Address Config
 
-When you see `Welcome to PfSense` and a list of interfaces, see if there is a valid IP address you can connect to that is on a subnet you can get on. If there is, skip to GUI config below.
+When you see `Welcome to PfSense` and a list of interfaces, see if there is a valid IP address you can connect to that is on a subnet and VLAN you can get on. If there is, you can skip to GUI config below.
 
 If not, keep reading.
 
@@ -179,14 +179,13 @@ We'll use `172.18.0.5/16` for the LAN interface IP.
 
 If I was at my home lab, I would use a .1 address llike 172.21.0.1/16, but there was some weirdness with the VPN access that makes this easier.
 
+**VERIFY that I can't access .21 through the tunnel.**
+
 Hit enter without entering a gateway because this is a LAN interface.
 
 n to IPv6 DHCP. Enter to not enter an IPv6 address.
 
-y to DHCP on LAN.
-
-Start: `172.18.2.100`
-End: `172.18.2.199`
+n to DHCP on LAN. We'll need to configure this in the GUI.
 
 n to HTTP
 
@@ -228,11 +227,9 @@ Reload.
 
 Finish.
 
-Accep the license agreement.
+Accept the license agreement.
 
 # Create LAN interface in the GUI (if you didn't do it in the CLI).
-
-Use the LAN CLI instructions below if you can't access PfSense on the WAN network.
 
 Interfaces > Assignments > LAN
 
@@ -254,7 +251,7 @@ Go back to Services > DHCP server. Click on the LAN interface.
 
 Enable DHCP on the LAN Interface.
 
-Input the DHCP range .100-.199 (yes this got reset, IDK why).
+Input the DHCP range .100-.199
 
 DNS Servers: Leave the first line 172.20.0.1 (or whatever), 1.1.1.1, 9.9.9.9, and 8.8.8.8.
 
@@ -331,9 +328,9 @@ Name: PRIVATEIPs
 Descrition: RFC1918 Private Networks 
 Type: Network(s)
 
-10.0.0.0/8
-172.16.0.0/12
-192.168.0.0/16	
+`10.0.0.0/8`
+`172.16.0.0/12`
+`192.168.0.0/16`
 
 Click Add network after each.
 Save and apply.
@@ -355,7 +352,6 @@ You will also need to enable the VM firewalls to block inter-guest traffic that 
 ### LAN/Mgmt
 
 By default, the anti-Lockout Rule should be enabled, as well as default to any IPv4 and IPv6 rules.
-
 
 ## Troubleshooting
 
@@ -400,8 +396,6 @@ Check the box for `Do not backup package information.` and make sure `Do not bac
 You can, and probably should, encrypt the file if the storage you are saving it to is not encrypted itself.
 
 Save the `.xml` backup file somewhere safe, perferably an encrypted archive you have easy access to in an emergency.
-
-NOTE TO SELF: Update with my docs.
 
 # Extra FYIs
 
