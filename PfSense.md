@@ -94,16 +94,32 @@ I like to have:
 Good practice. In a production enviroment, you may have a bridge for each physical interface, and you can tie each virtual interface to a physical interface, avoiding the need to share the physical interface with other traffic.
 
 # Installing PfSense
+
+Start the VM.
+
 Double-click on the VM name `pfsense1` to open a new VNC window.
 
-Accept the aggreement by hitting enter.
-Select Install and hit enter.
-guided-ufs disk setup. GPT partition table.
+When the agreement loads, accept the aggreement by hitting enter.
 
-Do manual install, or disable swap afterward in `/etc/fstab` by commenting out #. Can use `nano` `pkg install nano`
+Hit enter to select Install.
 
-`# We're not doing ZFS because ZFS on ZFS is not good.`
-Finish
+Manual disk setup.
+
+Create > GPT - GUID partition table.
+Create > Leave it at `freebsd-ufs` and max size.
+Use down arrow key to navigate to:
+Mountpoint /
+Hit tab and use arrow keys to get to options.
+Enable SSD TRIM support by hitting space.
+Hit tab to get back and hit ok.
+
+It will prompt you to create a boot partition, say yes.
+
+NOTE: Do not use ZFS. It's functionally RAID on RAID which leave to undesirable concequences. ZFS is also the reason why I didn't use the guide ufs setup, which will automatically create a swap file, which the host ZFS filesystem makes unnecessary.
+
+If you use the guided method, disable swap afterward in `/etc/fstab` by commenting out #. Can use `nano` `pkg install nano` if you prefer that editor.
+
+Ok > Finish
 Commit.
 Reboot.
 
