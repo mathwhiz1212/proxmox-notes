@@ -175,7 +175,9 @@ Hit 2 and 2 to setup the LAN interface.
 
 `n` to DHCP.
 
-We'll use `172.20.0.1/16` for the LAN interface IP.
+We'll use `172.18.0.5/16` for the LAN interface IP.
+
+If I was at my home lab, I would use a .1 address llike 172.21.0.1/16, but there was some weirdness with the VPN access that makes this easier.
 
 Hit enter without entering a gateway because this is a LAN interface.
 
@@ -183,8 +185,8 @@ n to IPv6 DHCP. Enter to not enter an IPv6 address.
 
 y to DHCP on LAN.
 
-Start: `172.20.0.100`
-End: `172.20.0.199`
+Start: `172.18.2.100`
+End: `172.18.2.199`
 
 n to HTTP
 
