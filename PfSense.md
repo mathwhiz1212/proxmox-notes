@@ -297,21 +297,33 @@ DNS Servers: Leave the first line 10.0.0.1, 1.1.1.1, 9.9.9.9, and 8.8.8.8.
 ### Firewall Rules
 
 Interface rules and floating rules with the Quick (apply action immediately on match) are applied top to bottom.
-Floating rules apply before interface rules.
+
+Floating rules apply before interface rules. Interface rules are preferable because floating rules can cause unusual problems. That said, there are some floating rules that make sense:
 
 Floating > Add >
 
 Allow ping from any subnet: 
 
-Pass, check apply the action immediately on match, any interface, protocol (ICMP echo request), source, destination - This Firewall (self). Description: `Allow ping from any inteface to this firewall.`
+Pass
+check apply the action immediately on match any interface
+protocol (ICMP echo request)
+source any
+destination - This Firewall (self). Description: `Allow ping from any inteface to this firewall.`
 
 Allow access to this firewall for DNS from anything but my home network (WAN):
 
-Pass, check apply the action immediately on match: Source: Invert match `WAN Subnets`, destination `This Firewall (self)`, protocol: TCP/UDP, port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
+Pass
+check apply the action immediately on match Source: Invert match `WAN Subnets`
+Destination `This Firewall (self)`
+Protocol: TCP/UDP, port 53 (DNS). Description: `Allow DNS from any interface except the WAN (home) network.`
 
 Save (at bottom) and Apply (at top).
 
-### A better way (edit this into the other part).
+### GUEST1
+
+Click on GUEST1. We want to deny access to other subnets so the guests can't access them, but we don't want to risk forgetting to block access to a network, or a misconfiguration.
+
+So we only want to allow access to public IP addresses:
 
 Firewall ALias > Add:
 
@@ -344,29 +356,16 @@ You will also need to enable the VM firewalls to block inter-guest traffic that 
 
 By default, the anti-Lockout Rule should be enabled, as well as default to any IPv4 and IPv6 rules.
 
-### GUEST1
-
-Click on GUEST1. We want to deny access to other subnets so the guests can't access them.
-
-Block, Source: GUEST1 Subnets, Destination: LAN subnets. Destination port range: any.
-
-Description: `Block traffic to LAN (172.20.0.0/16).`
-
-Block, Source: GUEST1 Subnets, Destination: WAN subnets, Destination Port Range: any.
-
-Description: `Block traffic to WAN (192.168.1.0/24).`
-
-And repeat for any other subnets you don't want the guest network to access.
-
-Disable allow any to IPv6 if it exists.
-
-Leave the allow to any IPv4 at the bottom.
 
 ## Troubleshooting
 
-Reboot the PfSense VM. If your network is broken, you may need to do this using the network switch that PfSense is plugged into. Depending on your VLAN configuration on that switch, you may need to figure out which port is a managmenet port (you documented that, right?)
+Reboot the PfSense VM. If your network is broken, you may need to do this using the network switch that PfSense is plugged into. 
+
+Depending on your VLAN configuration on that switch, you may need to figure out which port is a managmenet port (you documented that, right?)
 
 If you can ping an IP, but cannot otherwise access it, try checking your firewall rules in PfSense and your subnet mask on EVERYTHING. I've had misconfigured subnets on something in the chain mess up communication a few times recently.
+
+You will need to configure VLANs on your physical switch if you are using VLANs. If you haven't done this, do it.
 
 ## Dynamic DNS
 
