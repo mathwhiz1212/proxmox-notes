@@ -3,64 +3,95 @@
 ## Install
 
 ### Create VM
-```
+
 Download the PfSense ISO into your local storage.
 
-ISO images > Download from URL > https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-2.7.2-RELEASE-amd64.iso.gz
+ISO images > Download from URL > `https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-2.7.2-RELEASE-amd64.iso.gz`
+
+Click query URL > Download./
 
 Leave the defaults and let it use gzip to decompress the ISO.
 
-# This (2.7.2) is the latest CE release that doesn't require an account. 2.8.x requires an account and introduces breaking changes. You can view 2.7.2 and earlier here: https://atxfiles.netgate.com/mirror/downloads/
+`# This (2.7.2) is the latest CE release that doesn't require an account. 2.8.x requires an account and introduces breaking changes. You can view 2.7.2 and earlier here: https://atxfiles.netgate.com/mirror/downloads/`
 
 Right-click on your node and click "Create VM".
 
 Node: The main one you want to use.
-VM ID (something at the beginning of a range you're not using for anything but networking): 4000
+VM ID (something at the beginning of a range you're not using for anything but networking): 
+e.g. 4000
 Name: pfsense1
-Start at Boot (check the box)
+Advanced > Start at Boot (check the box)
 Tag: mgmt
-```
 
 Select your ISO storage and the `pfSense-CE-2.7.2-RELEASE-amd64.iso` file we downloaded earlier. Click next.
 
 Click next on the system tab to accept the defaults.
 
-On Disks, select 8GB unless you plan to do more intense logging. NOTE: It is easier to expand than shrink virtual disks.
+On Disks, select 8GB unless you plan to do more intense logging.
 
-Check `Discard` and `SSD emulation` (you may need to check `Advanced` to see this. Leave the other defaults, and especially leave backups checked and DO NOT check skip replication. It is needed for ZFS replication-backed high-availability setups.
+NOTE: It is easier to expand than shrink virtual disks.
+
+Check `Discard` and `SSD emulation`
+
+You may need to check `Advanced` to see this. 
+
+Leave the other defaults. Don't mess with backups or replication unless you are 100% sure you know what you are doing and that it won't break backups or replication.
+
+Click next.
 
 Under CPU, give it 2 cores.
 
 You can adjust the type to the lowest version your oldest CPU in the cluster supports for best performance: https://qemu.readthedocs.io/en/master/system/qemu-cpu-models.html
 
-In absolutely identical CPUs through the entire cluster, you can use `host`.
+It will probably be leaving performance on the table if your hardware is made in the last decade. I have an 11 year old computer that supports v3, but my 12 year old computer only supports v2 so I'll leave it at default v2-AES. 
 
-Choose the wrong `type` will break moving VMs between nodes, and replication, so if you're new, you can just leave the default `x86-64-v2-AES` value.
+If you have identical CPUs through the entire cluster, and any backups you might deploy in an emergency have the same CPU, you can use `host` for best performance.
+
+If you choose the wrong `type` it will break moving VMs between nodes, and replication. If you're unsure, you can just leave the default `x86-64-v2-AES` value.
+
+Click next.
+
+PfSense doesn't need much RAM if you aren't expecting a lot of traffic and you're not using an IDS or IPS.
 
 Memory: 1024MB
 Uncheck ballooning device. This is normally a good thing, but for this use case, we're leaving it off.
 
 Network
 
-We're using our `vmbr0` Linux bridge and our WAN network VLAN (500 in my case).
+We're using our `vmbr0` Linux bridge and our WAN network VLAN (500 in this case).
 
-Uncheck firewall.
+Uncheck firewall, or you might issues receiving traffic.
 
-Click next. Check "Start on creation".
+Click next. Then finish.
 
-Click on the `pfsense1` VM and the options tab. Double-left click on `protection`, check enabled, and click ok.
+It will show a ? then a green arrow when it is done creating itself.
 
-This helps prevent against accidental deletion.
+Click on the `pfsense1` VM and the options tab. Scroll down and double-left click on `protection`, check enabled, and click ok.
+
+This helps prevent against accidental deletion because you *do not* want to accidentally delete your router.
 
 # Creating Virtual Network Interfaces
+
 Click on pfsense 1 > hardware > add > network device.
 Bridge: vmbr0
-VLAN tag: 400 (this is my maangement network for PfSense and Proxmox).
-Firewall: Uncheck this.
+VLAN tag: 400 (this is the maangement network for PfSense and Proxmox).
+Uncheck firewall.
 
-Repeat as needed. I like to have 1 interface for the WAN like we created in the install, 1 managment interface, and 1 interface that I can use for all the Proxmox VNets I put in PfSense later. That last interface should **not** have a VLAN tag.
+add > network device.
+Bridge: vmbr0
+VLAN tag: (leave empty for VNets)
+Uncheck firewall.
 
-Remember to uncheck the firewall on each interface you create. PfSense IS a firewall and we want traffic to be able to get to it.
+Repeat as needed. Remember to uncheck the firewall on each interface you create. PfSense IS a firewall and we want traffic to be able to get to it.
+
+I like to have:
+
+1 interface for the WAN like we created in the install
+1 managment interface
+1 interface that I can use for all the Proxmox VNets I may add to PfSense later. This interface should **not** have a VLAN tag.
+
+#### Why Create multiple interfaces?
+Good practice. In a production enviroment, you may have a bridge for each physical interface, and you can tie each virtual interface to a physical interface, avoiding the need to share the physical interface with other traffic.
 
 # Installing PfSense
 Double-click on the VM name `pfsense1` to open a new VNC window.
