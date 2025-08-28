@@ -27,6 +27,8 @@ TODOs:
 
 [Ceph](Ceph.md)
 
+More I could add:
+
 Linux Permissions
 Debian Setup
 Install
