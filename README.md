@@ -10,8 +10,10 @@ This is a work in progress meant to be a companion to [AJ's excellent documentat
 
 [Clustering](Clustering.md)
 
+TODOs:
 - Corosync voting device.
 - Link to AJ Raspi docs.
+- Make it more readable by adding spaces and editing.
 
 [Cluster Management](Cluster%20Management.md)
 
