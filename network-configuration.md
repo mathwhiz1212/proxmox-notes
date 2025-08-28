@@ -7,6 +7,7 @@ It is much easier to configure networking before clustering.
 Understanding VLANs: https://github.com/bnnanet/learn-colocation/issues/24
 
 You'll need a managed switch to configure VLANs. I'm using this one: https://www.amazon.com/NETGEAR-8-Port-Gigabit-Ethernet-Switch/dp/B0D9W9YNWD/
+And this looks to be a good deal for 5 shielded ethernet cables ($20-25 = $4-5 each): https://www.amazon.com/gp/product/B00HEM5IWC/
 
 I'm using VLAN 400 for the management  network (172.18.0.0/16), 500 for the WAN-as-LAN interface (192.168.0.0/24), and 1001 for the guest network (10.0.0.0/8).
 
