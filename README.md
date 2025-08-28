@@ -1,8 +1,8 @@
 # proxmox-notes
 
-AJ has excellent Proxmox documentation here: https://github.com/bnnanet/learn-colocation/issues/
+This is a work in progress meant to be a companion to [AJ's excellent documentation](https://github.com/bnnanet/learn-colocation/issues/), to fill in some cracks and share what I've learned.
 
-Here is mine:
+[PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSense.md)
 
 [Proxmox Setup](Proxmox%20Setup.md)
 
@@ -37,13 +37,12 @@ Troubleshooting
 Ubuntu Server Live
 Using Caddy as a reverse proxy.
 Security warning.
-pfSense.
 
 Useful links
 
 Virtual node
 
-Host cpu. Can't migrate like that.
+Host cpu. Can't migrate like that unless CPUs are indentical.
 Get a VM ready to cluster non-leader.
 Clone, don't backup and restore. Can probably do template.
 OS doesn't need much if you're using secondary drives for storage.
