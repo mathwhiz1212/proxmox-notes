@@ -8,6 +8,8 @@ This is a work in progress meant to be a companion to [AJ's excellent documentat
 
 [Hardware](Hardware.md)
 
+[ZFS](ZFS.md)
+
 [Clustering](Clustering.md)
 
 TODOs:
@@ -22,8 +24,6 @@ TODOs:
 [Preventing Failures](Preventing%20Failures.md)
 
 [Recovering From Failures](Recovering%20From%20Failures.md)
-
-[ZFS](ZFS.md)
 
 [Ceph](Ceph.md)
 
