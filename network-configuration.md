@@ -47,11 +47,13 @@ See [PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSe
 
 If you want to have 2 IP addresses on the same physical network interface on your Proxmox nodes, it is considered suboptimal, but there is a way to do it.
 
+It is preferable to buy a NIC. You can get cheap 1-port NICs, or used 4-port server NICs.
+
 This is NOT how to use different networks on VMs. On VMs, you can just specify a different IP address and VLAN ID (or the VNet instead of the VLAN ID if the VNet has a VLAN configured) and that should work fine.
 
 This is NOT how to give PfSense different IP addresses, those IP addresses are created within the PfSense mangamenet interface (probably under interfaces and interfaces > VLANs on PfSense). You **will** have to do that **before** you configure the nodes.
 
-#### If you want the node itself to have more than one IP address, you can do the following:
+If you want the node itself to have more than one IP address on a single NIC, you can do the following:
 
 WARNING: If you do this, you can never edit any network interfaces on that node in the Proxmox GUI again. Failing to remember that fact will lead to all but one (probably the last listed) IP to be deleted, and VLAN configurations to be broken.
 
