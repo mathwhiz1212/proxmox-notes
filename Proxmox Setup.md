@@ -24,3 +24,4 @@ chmod +x proxmox-setup.sh
 
 # Network Configuration
 [Network Configuration Documentation](network-configuration.md)
+[PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSense.md)
