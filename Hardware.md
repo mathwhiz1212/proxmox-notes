@@ -12,7 +12,7 @@ I don't recommend most of this, I went as cheap as possible and re-used hardware
 - If you have access to Ethernet for your home lab, use it. I didn't.
   
 - Managed Switch: https://www.amazon.com/NETGEAR-8-Port-Gigabit-Ethernet-Switch/dp/B0D9W9YNWD/
-- I started off with the 5-port version, but this one is way easier to use. It has "quality of life" features, loop prevention (not just detection like the 5-port) and link aggregation support.
+- I started off with the 5-port version, but this one is way easier to use. It has "quality of life" features and link aggregation support.
 
 - Ethernet cables capable of 1000mbps, Cat5e or newer. I used mostly Cat5e cables I already had access to.
 - Currenlty, you can get 5 shielded Cat 6a cables for ~$20-25: https://www.amazon.com/gp/product/B00HEM5IWC/
