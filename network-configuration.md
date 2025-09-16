@@ -51,6 +51,8 @@ First create the bond. Use `balance-tlb` if you don't know what link aggregation
 
 `balance-alb` is functionally similar, but slower to fail-over in the event of a NIC failure.
 
+`enp7s0` (internal) and `enp4s0f1` (PCIe NIC) are the interfaces I want to use for this.
+
 ```
 iface enp7s0 inet manual
   bond-master bond0
@@ -90,6 +92,24 @@ Proxmox: https://pve.proxmox.com/pve-docs/pve-admin-guide.html#sysadmin_network_
 Red Hat docs: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking#upstream-switch-configuration-depending-on-the-bonding-modes_configuring-network-bonding
 alb vs tlb: https://serverfault.com/a/739550
 Ubuntu config in case you want to bond interface on a non-Proxmox system: https://www.server-world.info/en/note?os=Ubuntu_22.04&p=bonding
+
+# Troubleshooting network interfaces.
+
+`reboot` of the node is your friend.
+
+`ip a` lets you see all the network interfaces and their status `LOWER_UP` is what you want for interfaces that are plugged in and/or virtual interfaces that are supposed to be in use.
+
+`ping -I mgmt [IP]` allows you to ping an IP address using the `mgmt` interface specifically.
+
+`ifup [Interface Name]` brings an interface up (assuming a valid configuration exists). This does not persist after a reboot.
+
+`ifdown [Interface Name]` brings the interface down. This does not persist after a reboot.
+
+`ifreload -a` reloads all `auto` interfaces.
+
+`ifreload -c` reloads all currently UP interfaces.
+
+Adding the `-u` flag to `ifreload` commands forces the use of the current `/etc/network/interfaces` file instead of the saved state.
 
 # 1 physical NIC with 2 interfaces (not the sensible VNet/VLAN way, but on the node itself)
 If you want to have 2 IP addresses on the same physical network interface on your Proxmox nodes, it is considered suboptimal, but there is a way to do it.
