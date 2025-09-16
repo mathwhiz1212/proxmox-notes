@@ -131,17 +131,17 @@ Ubuntu config in case you want to bond interface on a non-Proxmox system: https:
 
 Adding the `-u` flag to `ifreload` commands forces the use of the current `/etc/network/interfaces` file instead of the saved state.
 
-# 1 physical NIC with 2 interfaces (not the sensible VNet/VLAN way, but on the node itself, don't do this).
+# 1 physical NIC with 2 IPs (not the sensible VNet/VLAN way, but on the node itself, don't do this).
 
 If you want to have 2 IP addresses on the same physical network interface on your Proxmox nodes, it is considered suboptimal, but there is a way to do it.
 
 If you just want a different subnet, create a subnet in PfSense, or a VNet in Proxmox (or both), don't do this.
 
-It is preferable to buy a NIC. You can get cheap 1-port NICs, or used 4-port server NICs.
+It is preferable to buy a NIC rather than do this. You can get cheap 1-port NICs, or used 4-port server NICs.
 
 This is NOT how to use different networks on VMs. On VMs, you can just specify a different IP address and VLAN ID (or the VNet instead of the VLAN ID if the VNet has a VLAN configured) and that should work fine.
 
-This is NOT how to give PfSense different IP addresses, those IP addresses are created within the PfSense mangamenet interface (probably under interfaces and interfaces > VLANs on PfSense). You **will** have to do that **before** you configure the nodes.
+This is NOT how to give PfSense different IP addresses, those IP addresses are created within the PfSense mangamenet interface (probably under Interfaces and Interfaces > VLANs on PfSense). You **will** have to do that **before** you configure the nodes.
 
 If you want the node itself to have more than one IP address on a single NIC, you can do the following:
 
@@ -165,7 +165,7 @@ iface mgmt inet static
         vlan-id 600
 ```
 
-Save, then run: `ifdown mgmt && ifup mgmt` to restart the interface and test it by pinging with another computer on the same subnet. This may not work as expected until you have 2 proxmox nodes or other non-router devices running on the second subnet.
+Save, then run: `ifdown mgmt && ifup mgmt` to restart the interface and test it by pinging it with another computer on the same subnet. This may not work as expected until you have 2 proxmox nodes or other non-router devices running on the second subnet.
 
 My router is configured to always accept ICMP pings so the ping behavior is the same regardless of whether things are working right or not.
 
