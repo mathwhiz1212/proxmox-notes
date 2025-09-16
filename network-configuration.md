@@ -117,7 +117,7 @@ Ubuntu config in case you want to bond interface on a non-Proxmox system: https:
 
 `reboot` of the node is your friend.
 
-`ip a` lets you see all the network interfaces and their status `LOWER_UP` is what you want for interfaces that are plugged in and/or virtual interfaces that are supposed to be in use.
+`ip a` lets you see all the network interfaces and their status. `LOWER_UP` is what you want for interfaces that are plugged in and/or virtual interfaces that are supposed to be in use.
 
 `ping -I mgmt [IP]` allows you to ping an IP address using the `mgmt` interface specifically.
 
