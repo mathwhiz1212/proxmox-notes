@@ -1,24 +1,26 @@
-## Networking
+# Networking
 
 It is much easier to configure networking before clustering.
 
-### VLANs
-
-Understanding VLANs: https://github.com/bnnanet/learn-colocation/issues/24
+## Hardware
 
 You'll need a managed switch to configure VLANs. I'm using this one: https://www.amazon.com/NETGEAR-8-Port-Gigabit-Ethernet-Switch/dp/B0D9W9YNWD/
 
 And this looks to be a good deal for 5 shielded ethernet cables ($20-25 = $4-5 each): https://www.amazon.com/gp/product/B00HEM5IWC/
 
+## VLANs
+
+Understanding VLANs: https://github.com/bnnanet/learn-colocation/issues/24
+
 I'm using VLAN 400 for the management  network (172.18.0.0/16), 500 for the WAN-as-LAN interface (192.168.0.0/24), and 1001 for the guest network (10.0.0.0/8).
 
 An example production configuration: https://github.com/bnnanet/learn-colocation/issues/18
 
-If an access port (PVID) is configured in this model of Netgear switch, you cannot specify the VLAN ID on the device itself or it will not pass the traffic.
-
-AJ: Or it may pass the VLAN ID through as a nested VLAN ID, which would also cause problems.
+If an access port (PVID) is configured, you generally cannot specify a VLAN ID on the device itself or it will not pass the traffic, or it will pass it as a nested VLAN ID, which would also cause problems.
 
 It is best to give MacOS devices a PVID because they tend not to play nice with VLANs otherwise.
+
+The Proxmox nodes themselves should be given trunk ports.
 
 # Proxmox Node Network Interface Configuration
 
