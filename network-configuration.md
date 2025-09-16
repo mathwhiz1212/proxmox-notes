@@ -45,7 +45,7 @@ See [PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSe
 
 # Advanced Configuration
 
-## Bonding Physical Interfaces for Redundancy and Load Balancing.
+## Creating a Linux Bond - "Bonding" 2 Physical Interfaces for Redundancy and Load Balancing.
 
 First create the bond. Use `balance-tlb` if you don't know what link aggregation your switch supports because it will work without any switch configuration.
 
