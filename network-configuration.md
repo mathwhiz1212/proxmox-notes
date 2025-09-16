@@ -45,13 +45,24 @@ See [PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSe
 
 # Advanced Configuration
 
-## Creating a Linux Bond - "Bonding" 2 Physical Interfaces for Redundancy and Load Balancing.
+## VNets
 
-First create the bond. Use `balance-tlb` if you don't know what link aggregation your switch supports because it will work without any switch configuration.
+* Create VNet.
+* Add network to PfSense.
+* Add Proxmox VNet and Node firewall rules.
+* Add to any VMs you want to use the VNet.
 
-`balance-alb` is functionally similar, but slower to fail-over in the event of a NIC failure.
+## Creating a Linux Bond
 
-`enp7s0` (internal) and `enp4s0f1` (PCIe NIC) are the interfaces I want to use for this.
+"Bonding" 2 or more physical interfaces allows for redundancy and load balancing between interfaces. 
+
+After plugging in the NICs you want to use to your switch(es), follow these instructions:
+
+Create the bond (example config below).
+
+Use `balance-tlb` if you don't know what link aggregation config your switch supports because it will work without any switch configuration and faster failover than `balance-alb`.
+
+`enp7s0` (internal) and `enp4s0f1` (PCIe NIC) are the interfaces I am using for this.
 
 ```
 iface enp7s0 inet manual
@@ -71,7 +82,7 @@ iface enp4s0f1 inet manual
     bond-updelay 200
 ```
 
-Then edit your `vmbr0` bridge interface to use the `bond0` instead of a physical interface like `enp7s0`:
+Then edit your `vmbr0` bridge interface to use `bond0` instead of a physical interface like `enp7s0`:
 
 ```
 auto vmbr0
@@ -83,14 +94,20 @@ iface vmbr0 inet manual
 	bridge-vids 2-4094
 ```
 
-Then reboot for the changes to take effect. `ifreload -c` (reload all currently up) might work, but I haven't tested that. `ifreload -a` reloads all `auto` interfaces.
+Then reboot using `reboot` for the changes to take effect.
+
+`ifreload -a` reloads all `auto` interfaces. It might work, but I haven't tested that approach.
 
 More resources:
 
 Server World: http://server-world.info/en/note?os=Debian_12&p=bonding&f=1
+
 Proxmox: https://pve.proxmox.com/pve-docs/pve-admin-guide.html#sysadmin_network_bond
-Red Hat docs: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking#upstream-switch-configuration-depending-on-the-bonding-modes_configuring-network-bonding
+
+Red Hat docs that say which bonding tech requires which switch config: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking#upstream-switch-configuration-depending-on-the-bonding-modes_configuring-network-bonding
+
 alb vs tlb: https://serverfault.com/a/739550
+
 Ubuntu config in case you want to bond interface on a non-Proxmox system: https://www.server-world.info/en/note?os=Ubuntu_22.04&p=bonding
 
 # Troubleshooting network interfaces.
@@ -111,7 +128,8 @@ Ubuntu config in case you want to bond interface on a non-Proxmox system: https:
 
 Adding the `-u` flag to `ifreload` commands forces the use of the current `/etc/network/interfaces` file instead of the saved state.
 
-# 1 physical NIC with 2 interfaces (not the sensible VNet/VLAN way, but on the node itself)
+# 1 physical NIC with 2 interfaces (not the sensible VNet/VLAN way, but on the node itself, don't do this).
+
 If you want to have 2 IP addresses on the same physical network interface on your Proxmox nodes, it is considered suboptimal, but there is a way to do it.
 
 If you just want a different subnet, create a subnet in PfSense, or a VNet in Proxmox (or both), don't do this.
