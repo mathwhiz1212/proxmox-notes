@@ -45,7 +45,54 @@ See [PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSe
 
 # Advanced Configuration
 
+## Bonding Physical Interfaces for Redundancy and Load Balancing.
+
+First create the bond. Use `balance-tlb` if you don't know what link aggregation your switch supports because it will work without any switch configuration.
+
+`balance-alb` is functionally similar, but slower to fail-over in the event of a NIC failure.
+
+```
+iface enp7s0 inet manual
+  bond-master bond0
+  bond-mode balance-tlb
+iface enp4s0f1 inet manual
+  bond-master bond0
+  bond-mode balance-tlb  
+
+# This is copy and paste from Server World's config and may not be accurate/good for a specific config.
+  auto bond0
+  iface bond0 inet static
+    bond-slaves enp7s0 enp4s0f1
+    bond-mode balance-tlb
+    bond-miimon 100
+    bond-downdelay 200
+    bond-updelay 200
+```
+
+Then edit your `vmbr0` bridge interface to use the `bond0` instead of a physical interface like `enp7s0`:
+
+```
+auto vmbr0
+iface vmbr0 inet manual
+	bridge-ports bond0
+	bridge-stp off
+	bridge-fd 0
+	bridge-vlan-aware yes
+	bridge-vids 2-4094
+```
+
+More resources:
+
+Server World: http://server-world.info/en/note?os=Debian_12&p=bonding&f=1
+Proxmox: https://pve.proxmox.com/pve-docs/pve-admin-guide.html#sysadmin_network_bond
+Red Hat docs: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking#upstream-switch-configuration-depending-on-the-bonding-modes_configuring-network-bonding
+alb vs tlb: https://serverfault.com/a/739550
+Ubuntu config in case you want to bond interface on a non-Proxmox system: https://www.server-world.info/en/note?os=Ubuntu_22.04&p=bonding
+
+# 1 physical NIC with 2 interfaces (not the sensible VNet/VLAN way, but on the node itself)
 If you want to have 2 IP addresses on the same physical network interface on your Proxmox nodes, it is considered suboptimal, but there is a way to do it.
+
+If you just want a different subnet, create a subnet in PfSense, or a VNet in Proxmox (or both), don't do this.
 
 It is preferable to buy a NIC. You can get cheap 1-port NICs, or used 4-port server NICs.
 
