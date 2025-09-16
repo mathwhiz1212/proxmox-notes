@@ -37,6 +37,7 @@ Leave the physical interface alone.
 Simultaneously in an SSH connection to the Proxmox node and in the interface, do the following:
 
 Run in the SSH connection: `sleep 30; reboot`
+
 In Proxmox: Click apply configuration.
 
 # PfSense Configuration
