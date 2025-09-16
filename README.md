@@ -2,6 +2,8 @@
 
 This is a work in progress meant to be a companion to [AJ's excellent documentation](https://github.com/bnnanet/learn-colocation/issues/), to fill in some cracks and share what I've learned.
 
+[Proxmox Network Configuration](network-configuration.md)
+
 [PfSense Setup](https://github.com/mathwhiz1212/proxmox-notes/blob/main/PfSense.md)
 
 [Proxmox Setup](Proxmox%20Setup.md)
@@ -57,7 +59,6 @@ Ssh-copy-id to proxmox nested host and guests.
 
 Useful links
 
-Network set up.
 IP addresses and hostnames for everything.
 
 VLANs
