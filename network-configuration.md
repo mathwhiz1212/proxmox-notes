@@ -81,7 +81,7 @@ iface vmbr0 inet manual
 	bridge-vids 2-4094
 ```
 
-Then reboot for the changes to take effect. `ifreload -c` (reload all currently up) might work, but I haven't tested that.
+Then reboot for the changes to take effect. `ifreload -c` (reload all currently up) might work, but I haven't tested that. `ifreload -a` reloads all `auto` interfaces.
 
 More resources:
 
