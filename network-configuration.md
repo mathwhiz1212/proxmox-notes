@@ -60,7 +60,7 @@ After plugging in the NICs you want to use to your switch(es), follow these inst
 
 Create the bond (example config below).
 
-Use `balance-tlb` if you don't know what link aggregation config your switch supports because it will work without any switch configuration and faster failover than `balance-alb`.
+Use `balance-tlb` if you don't know what link aggregation config your switch supports because it will work without any switch configuration and has faster failover than `balance-alb`.
 
 `enp7s0` (internal) and `enp4s0f1` (PCIe NIC) are the interfaces I am using for this.
 
